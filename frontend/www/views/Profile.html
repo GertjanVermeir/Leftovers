@@ -1,0 +1,11 @@
+<p class="bar topfill"></p>
+
+
+<div ng-if="profileInitialized">
+    Naam: {{ profile.surname }} <br />
+    Voornaam: {{ profile.givenname }}<br />
+    E-mailadres: {{ profile.email }}<br />
+    Geboortedatum: {{ profile.birthday }}<br />
+    Recepten: {{ profile.recipes.length }}<br />
+    Profielfoto: <img src="http://localhost/leftovers/backoffice/public/images/{{ profile.picture }}" ><br />
+</div>

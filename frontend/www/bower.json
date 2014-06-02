@@ -1,0 +1,20 @@
+{
+  "name": "Leftovers",
+  "version": "1.0",
+  "homepage": "",
+  "authors": [
+    "Gertjan Vermeir <gertjanvermeir17@hotmail.com>"
+  ],
+  "description": "Eindwerk Gertjan Vermeir",
+  "keywords": [
+    "koken"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

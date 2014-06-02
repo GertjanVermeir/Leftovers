@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="Gj.Leftovers" xmlns:ng="http://angularjs.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1" />
+        <title>Leftovers</title>
+        <script src="cordova.js"></script>
+        <script>
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                setTimeout(function() {
+                    navigator.splashscreen.hide();
+                }, 500);
+            }
+        </script>
+        <!-- FONTAWESOME -->
+        <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+        <!-- FOUNDATION NORMALIZE -->
+        <link rel="stylesheet" href="bower_components/foundation/css/normalize.css">
+        <!-- FOUNDATION CSS -->
+        <link rel="stylesheet" href="bower_components/foundation/scss/foundation.css">
+        <!-- LESS -->
+        <link rel="stylesheet/less" type="text/css" href="css/index.less">
+        <script src="scripts/less.js" type="text/javascript"></script>
+        <!-- ANIMATE CSS -->
+        <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="bower_components/angular-ui/build/angular-ui.min.css">
+        <!-- MODERNIZR JS -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+    </head>
+    <body>
+        <div class="app" id="wrapper">
+            <div class="off-canvas-wrap">
+                <div class="inner-wrap">
+                    <nav class="tab-bar" id="tab-bar">
+                        <section class="left-small">
+                            <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+                        </section>
+                        <section class="middle tab-bar-section">
+                            <h1 class="title">{{Title}}</h1>
+                        </section>
+                    </nav>
+
+                    <aside class="left-off-canvas-menu">
+                        <ul class="off-canvas-list main-nav" ng-controller="Gj.Leftovers.Controllers.NavCtrl">
+                            <li ng-class="{ active: isRouteActive('/') }"><a href="#"><img src="img/menu-logo.png"> Home</a></li>
+                            <li ng-class="{ active: isRouteActive('/recipes') }"><a href="#/recipes"><img src="img/menu-recept.png"> Recepten</a></li>
+                            <li ng-class="{ active: isRouteActive('/book') }"><a href="#/recipe"><img src="img/menu-book.png">Kookboeken</a></li>
+                            <li ng-class="{ active: isRouteActive('/following') }"><a href="#/info/mar"><img src="img/menu-friends.png"> Vriendenlijst</a></li>
+                            <li ng-class="{ active: isRouteActive('/config') }"><a href="#"><img src="img/menu-settings.png"> Instellingen</a></li>
+                            <li ng-class="{ active: isRouteActive('/profile') }"><a href="#/profile"><img src="img/menu-settings.png"> Mijn Profiel</a></li>
+                            <li><label><i class="fa fa-search"></i> Recept Zoeken</label></li>
+                            <li><input type="text" id="quickSearch" ui-keypress="{13:'enterAndSearch()'}" ng-model="searchTerm" type="text" placeholder="Snel zoeken"></li>
+                            <li><a ng-click="confirmSearchRequest(); $event.preventDefault()" href="#/quick-search" class="confirm-search-button" ng-show="searchTerm.length>=3" ><i class="fa fa-check"></i> Zoeken</a></li>
+                        </ul>
+                    </aside>
+
+                    <section class="main-section" id="leftovers-app">
+                        <div id="view" class="main">
+                            <div id="ngview" class="main" ng-view></div>
+                        </div>
+                    </section>
+                    <a class="exit-off-canvas"></a>
+                </div>
+            </div>
+        </div>
+        <div id="modalDialog" class="reveal-modal" data-reveal>
+            <h2>{{ModalTitle}}</h2>
+            <p>{{ModalContent}}</p>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+        <!-- ANGULAR JS + LOCAL STORAGE + ROUTE -->
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
+
+        <!-- jQUERY -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- jQUERY COOKIE -->
+        <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+        <!-- jQUERY PLACEHOLDER -->
+        <script src="bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <!-- HAMMER JS -->
+        <script src="bower_components/hammerjs/hammer.min.js"></script>
+        <!-- FOUNDATION -->
+        <script src="bower_components/foundation/js/foundation.min.js"></script>
+        <!-- FASTCLICK.JS -->
+        <script src="bower_components/fastclick/lib/fastclick.js"></script>
+
+        <!-- APP.JS -->
+        <script src="scripts/app.js"></script>
+
+        <!-- ANGULAR CONTROLLERS LOAD AFTER APP.JS -->
+        <script src="scripts/controllers/NavCtrl.js"></script>
+        <script src="scripts/controllers/CtrlRecipes.js"></script>
+        <script src="scripts/controllers/CtrlRecipe.js"></script>
+        <script src="scripts/controllers/CtrlRecipeCreate.js"></script>
+        <script src="scripts/controllers/CtrlProfile.js"></script>
+        <!-- Leftovers -->
+        <script src="scripts/controllers/CtrlHome.js"></script>
+        <!-- END OF ANGULAR CONTROLLERS -->
+
+        <script src="scripts/fixes.js"></script>
+    </body>
+</html>

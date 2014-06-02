@@ -1,0 +1,82 @@
+<div id="recipe" ng-if="recipeInitialized">
+    <div class="row" style="height: 100%">
+        <div class="small-12 columns big-pic" style="background: url('http://localhost/leftovers/backoffice/public/images/{{ recipe.image }}') center no-repeat">
+        </div>
+    </div>
+
+    <p class="bar-special"></p>
+
+    <div class="row rec-info">
+        <div class="small-3 medium-3 columns nopad">
+            <img src="img/author.png" >
+        </div>
+        <div class="small-3 medium-3 columns">
+            <img src="img/time.png" >
+        </div>
+        <div class="small-3 medium-3 columns">
+            <img src="img/level.png" >
+        </div>
+        <div class="small-3 medium-3 columns">
+            <img src="img/rating.png" >
+        </div>
+    </div>
+
+    <p class="bar-special"></p>
+
+    <div class="row rec-nav nopad">
+        <div class="small-2 medium-2 columns nopad">
+            <p><</p>
+        </div>
+        <div class="small-8 medium-8 columns nopad">
+            <h3>{{ recipe.name }}</h3>
+        </div>
+        <div class="small-2 medium-2 columns nopad">
+            <p>></p>
+        </div>
+    </div>
+
+    <div class="row rec-details nopad">
+        <p>Voor {{ recipe.persons }} personen.</p>
+        <p>Gang: {{ recipe.course }}</p>
+        <p>Soort: {{ recipe.type }}</p>
+    </div>
+
+    <div class="row rec-ingredients nopad">
+        <div class="small-6 medium-6 columns nopad">
+            <ul>
+                <li ng-repeat="ingredient in recipe.ingredients" ng-if="$index % 2 == 0" >
+                    {{ ingredient.pivot.amount }}{{ ingredient.unit }} {{ ingredient.name }}
+                </li>
+            </ul>
+        </div>
+        <div class="small-6 medium-6 columns nopad">
+            <ul>
+                <li ng-repeat="ingredient in recipe.ingredients" ng-if="$index % 2 != 0" >
+                    {{ ingredient.pivot.amount }}{{ ingredient.unit }} {{ ingredient.name }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+        <div class="rec-steps" ng-repeat="steps in recipe.description">
+            <p>
+            {{ $index + 1 }}
+            </p>
+            <p>
+                {{ steps }}
+            </p>
+        </div>
+
+
+        <div class="row">
+            <div class="small-6 medium-6 columns button-green">
+                <img src="img/icon-heart.png"> Yummy
+            </div>
+            <div class="small-3 medium-3 columns button-blue">
+                <img src="img/icon-share.png">
+            </div>
+            <div class="small-3 medium-3 columns button-red">
+                <img src="img/icon-comment.png">
+            </div>
+        </div>
+</div>

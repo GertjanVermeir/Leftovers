@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="Gj.Leftovers" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Leftovers</name>
+    <description></description>
+    <author email="gertjanvermeir17@hotmail.com" href="http://gertjanvermeir.be">
+        Gertjan Vermeir
+    </author>
+    <content src="index.html" />
+    <!-- PREFERENCES -->
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="fade-splash-screen-duration" value="10" />
+    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <!-- FEATURES -->
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen" />
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <access origin="*" />
+    <plugins>
+        <plugin name="SplashScreen" value="CDVSplashScreen" />
+    </plugins>
+</widget>
