@@ -65,7 +65,7 @@
         </div>
 
         {{ Form::label('mainimage', 'Recept Afbeelding'); }}<br />
-        <img src="{{ '../../../images/'. $recipe->image }}" >
+        <img src="{{ '../../../images/recipes/'. $recipe->image }}" >
 
         @if($errors->first('mainimage'))
         <div class="form-group has-error">

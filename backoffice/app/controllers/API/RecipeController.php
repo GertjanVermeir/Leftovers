@@ -18,8 +18,8 @@ class API_RecipeController extends \BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $artist_id
-     * @return Response Redirect
+     * @param  int  $recipe_id
+     * @return Response
      */
     public function show($recipe_id)
     {
@@ -67,7 +67,7 @@ class API_RecipeController extends \BaseController
             'ingredient' => 'required|array',
             'amount' => 'required|array',
             'persons' => 'required|integer',
-            'mainimage' => 'required|image',
+            'mainimage' => 'required',
             'user_id' => 'required',
         ];
 
@@ -93,7 +93,7 @@ class API_RecipeController extends \BaseController
 
             if($amountCheck == false || $ingredientCheck == false)
             {
-                return Response::json('Foutieve ingave.');
+                return Response::json('Vul de lege ingredienten in.');
             }
 
             $recipe = new Recipe([
@@ -104,14 +104,14 @@ class API_RecipeController extends \BaseController
                 'course' => $input['course'],
                 'type' => $input['type'],
                 'persons' => $input['persons'],
-                'mainimage' => $input['mainimage'],
+                'image' => $input['mainimage'],
                 'user_id' => $input['user_id'],
             ]);
 
             if (Input::hasFile('mainimage')) {
                 $file            = Input::file('mainimage');
                 $root            = public_path();
-                $destinationPath = $root.'/images/users/';
+                $destinationPath = $root.'/images/recipes/';
                 $filename        = str_random(6) . '_' . $file->getClientOriginalName();
                 $uploadSuccess   = $file->move($destinationPath, $filename);
                 $recipe->image = $filename;

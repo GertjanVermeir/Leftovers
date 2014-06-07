@@ -29,11 +29,13 @@ Route::get('/', [
 Route::group(['prefix' => 'api'], function () {
     Route::resource('recipe', 'API_RecipeController', [
         'except' => [
-            'create',
-            'store',
-            'edit',
-            'update',
-            'destroy',
+
+        ]
+    ]);
+
+    Route::resource('ingredient', 'API_IngredientController', [
+        'except' => [
+
         ]
     ]);
 

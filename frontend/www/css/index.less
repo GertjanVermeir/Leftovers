@@ -664,3 +664,142 @@ ul.off-canvas-list li a:hover {
   margin-top: -4px;
   margin-right: 10px;
 }
+
+.nml-form{
+  input,select{
+    margin: 0;
+  }
+  label{
+    padding: 3px 10px;
+    font-size: 18px;
+    span{
+      float: left;
+      img{
+        height: 25px;
+      }
+    }
+  }
+}
+
+.info{
+  .info-chef{
+    float: left;
+    width: 30%;
+    max-width: 100px;
+    margin-right: 5%;
+  }
+
+  .info-content{
+    float: left;
+    max-width: 65%;
+    p{
+      line-height: 21px;
+      border-left:2px solid rgba(255,255,255,0.5);
+      padding-left: 10px;
+    }
+  }
+
+  padding: 10px;
+  background-color: @mainred;
+  color: white;
+  border: 10px solid #EF4323;
+}
+
+.option-empty{
+  color: #AAA;
+}
+
+input.amount{
+  width: 20% !important;
+  height: 35px;
+  padding: 8px 5px !important;
+  float: left;
+}
+
+.form-error{
+  width: 100%;
+  padding: 10px;
+  background-color: @maingrey;
+  color: white;
+}
+
+input.ings{
+  clear: both;
+  font-size: 16px !important;
+  width: 60% !important;
+  float: left;
+  height: 35px !important;
+  padding: 8px 5px !important;
+  border: 1px solid #cccccc;
+  text-transform: capitalize;
+}
+
+ul.ui-autocomplete{
+  background-color: #ffffff;
+  z-index: 99;
+  width: 60%;
+  border: 1px solid @lightergrey;;
+  li{
+    border-bottom: 1px solid @lightergrey;
+    padding: 5px 10px;
+    width: 100%;
+  }
+  li:hover,li:active,li:focus{
+    background-color: @mainyellow;
+  }
+}
+
+
+p.grey, p.delete,p.deleteStep{
+  height: 35px;
+  width: 10%;
+  float: left;
+  margin: 0;
+  line-height: 19px;
+  padding: 8px 5px !important;
+  text-align: center;
+  display: block;
+  background-color: #EEE;
+  border: 1px solid #cccccc;
+}
+p.delete, p.deleteStep{
+  background-color: #EF4323;
+  color: #ffffff;
+  border: 1px solid @mainred;
+  width: 10%;
+}
+p.deleteStep{
+  height: 50px;
+  line-height: 34px;
+}
+
+p.delete:hover, p.delete:active, p.delete:active{
+  cursor: pointer;
+}
+
+.button-add{
+  background-color: @bluegreen;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  line-height: 12px;
+  border: 2px solid @bluegreen;
+  border-top: 1px solid #808284;
+}
+
+.button-add:hover, .button-add:focus, .button-add:active{
+  border: 2px solid @darkgreen;
+  border-top: 1px solid @darkgreen;
+  cursor: pointer;
+}
+
+#form-steps textarea{
+  clear:  both;
+  resize: none;
+  height: 40px;
+  float: left;
+  width: 90%;
+  margin: 0;
+  border-left: 2px solid @mainred;
+  border-bottom: 2px solid #CCC;
+}

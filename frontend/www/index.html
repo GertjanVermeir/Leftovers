@@ -28,8 +28,10 @@
         <!-- ANIMATE CSS -->
         <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
         <link rel="stylesheet" href="bower_components/angular-ui/build/angular-ui.min.css">
+        <link rel="stylesheet" href="bower_components/allmighty-autocomplete/style/autocomplete.css">
         <!-- MODERNIZR JS -->
         <script src="bower_components/modernizr/modernizr.js"></script>
+
     </head>
     <body>
         <div class="app" id="wrapper">
@@ -73,14 +75,19 @@
             <a class="close-reveal-modal">&#215;</a>
         </div>
         <!-- ANGULAR JS + LOCAL STORAGE + ROUTE -->
+        <script src="bower_components/angular-file-upload/angular-file-upload-shim.min.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-animate/angular-animate.min.js"></script>
         <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
 
         <!-- jQUERY -->
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- jQUERY UI -->
+        <script src="bower_components/jquery-ui/js/jquery-1.10.2.js"></script>
+        <script src="bower_components/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
         <!-- jQUERY COOKIE -->
         <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
         <!-- jQUERY PLACEHOLDER -->
@@ -91,20 +98,33 @@
         <script src="bower_components/foundation/js/foundation.min.js"></script>
         <!-- FASTCLICK.JS -->
         <script src="bower_components/fastclick/lib/fastclick.js"></script>
-
+        <!-- FILE UPLOAD -->
+        <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+        <!-- Lodash JS -->
+        <script src="bower_components/lodash/dist/lodash.js"></script>
         <!-- APP.JS -->
         <script src="scripts/app.js"></script>
 
         <!-- ANGULAR CONTROLLERS LOAD AFTER APP.JS -->
+        <script src="scripts/controllers/AppCtrl.js"></script>
         <script src="scripts/controllers/NavCtrl.js"></script>
         <script src="scripts/controllers/CtrlRecipes.js"></script>
         <script src="scripts/controllers/CtrlRecipe.js"></script>
         <script src="scripts/controllers/CtrlRecipeCreate.js"></script>
         <script src="scripts/controllers/CtrlProfile.js"></script>
+        <script type="text/javascript" src="bower_components/allmighty-autocomplete/script/autocomplete.js"></script>
         <!-- Leftovers -->
         <script src="scripts/controllers/CtrlHome.js"></script>
+        <script src="scripts/services/LeftoversSrvc.js"></script>
         <!-- END OF ANGULAR CONTROLLERS -->
 
         <script src="scripts/fixes.js"></script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
     </body>
 </html>
+
+

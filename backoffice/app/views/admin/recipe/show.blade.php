@@ -39,7 +39,7 @@
         <th>
             Image
         </th>
-        <td><img class="platform-icon" src="{{ '../../images/'. $recipe->image }}" ></td>
+        <td><img class="platform-icon" src="{{ '../../images/recipes/'. $recipe->image }}" ></td>
     </tr>
 
 

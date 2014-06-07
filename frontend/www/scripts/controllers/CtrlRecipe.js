@@ -19,6 +19,7 @@
                 success(function(data, status, headers, config){
                     $scope.recipe = data;
                     $scope.recipeInitialized = true;
+
                 }).
                 error(function(data, status, headers, config){
                     alert('Recept kon niet gevonden worden.');
@@ -39,16 +40,7 @@
             };
 
             window.onresize = function(event) {
-                var cw = $('.rec-info div').width();
-                var ch = $(document).height();
-                var rh = $('.rec-nav').height();
-
-                $('.rec-info div').css({'height':cw+'px'});
-                $('.rec-info div img').css({'width':cw+'px'});
-
-
-                var dh =  $('.rec-info div').height();
-                $('.big-pic').css({'height':ch-dh-17-rh+'px'});
+                $scope.init();
             };
 
             $scope.init();

@@ -86,7 +86,7 @@ class Admin_ReceptController extends \BaseController
             if (Input::hasFile('mainimage')) {
                 $file            = Input::file('mainimage');
                 $root            = public_path();
-                $destinationPath = $root.'/images/users/';
+                $destinationPath = $root.'/images/recipes/';
                 $filename        = str_random(6) . '_' . $file->getClientOriginalName();
                 $uploadSuccess   = $file->move($destinationPath, $filename);
                 $recipe->image = $filename;
@@ -206,7 +206,7 @@ class Admin_ReceptController extends \BaseController
             if (Input::hasFile('mainimage')) {
                 $file            = Input::file('mainimage');
                 $root            = public_path();
-                $destinationPath = $root.'/images/';
+                $destinationPath = $root.'/images/recipes/';
                 $filename        = str_random(6) . '_' . $file->getClientOriginalName();
                 $uploadSuccess   = $file->move($destinationPath, $filename);
 
@@ -218,6 +218,7 @@ class Admin_ReceptController extends \BaseController
             $recipe->user_id = Auth::user()->id;
             $recipe->description = $input['description'];
             $recipe->time = $input['time'];
+            $recipe->name = $input['name'];
             $recipe->level = $input['level'];
             $recipe->course = $input['course'];
             $recipe->type = $input['type'];
@@ -248,8 +249,6 @@ class Admin_ReceptController extends \BaseController
     public function destroy($id)
     {
         $recipe = Recipe::findOrFail($id);
-
-        if (Auth::user()->id != $recipe->user->id || Auth::user()->role != 'Administrator') return View::make('noentrance');
 
         $recipe->delete();
 

@@ -1,7 +1,19 @@
 <p class="bar topfill"></p>
 
 <div class="row">
-    <div class="small-12 medium-12 columns button-blue">
-        <a href="#/recipe/create">Nieuw Recept</a>
+    <a href="#/recipe/create"><div class="small-12 medium-12 columns button-blue">Nieuw Recept</div></a>
+</div>
+
+<input type="text" id="quickSearch" ui-keypress="{13:'enterAndSearch()'}" ng-model="searchTerm" type="text" placeholder="Snel zoeken">
+<a ng-click="confirmSearchRequest(); $event.preventDefault()" href="#/quick-search" class="confirm-search-button" ng-show="searchTerm.length>=3" ><i class="fa fa-check"></i> Zoeken</a>
+
+<div class="row" ng-repeat="recipe in recipes">
+    <div class="small-3 columns" style="background: url('http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}')">
+    </div>
+    <div class="small-6 columns">
+        {{ recipe.name }}
+    </div>
+    <div class="small-3 columns">
+        {{ recipe.course }}
     </div>
 </div>

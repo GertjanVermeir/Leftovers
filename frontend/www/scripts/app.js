@@ -1,6 +1,5 @@
 'use strict';
 
-angular.module('LocalStorageModule').value('prefix', 'GjLeftovers');
 angular.module('Gj.Leftovers.Controllers', []);
 angular.module('Gj.Leftovers.Directives', []);
 angular.module('Gj.Leftovers.Services', []);
@@ -15,10 +14,12 @@ var app = angular
     'ngRoute',
     'ngAnimate',
     'ui.directives',
+    'autocomplete',
     'Gj.Leftovers.Controllers',
     'Gj.Leftovers.Directives',
     'Gj.Leftovers.Services',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ngResource',
     ]
     )
     //
@@ -53,7 +54,10 @@ var app = angular
             $routeProvider.when(
                 '/recipe/create', {
                     templateUrl:'views/RecipeCreate.html',
-                    controller:'Gj.Leftovers.Controllers.CtrlRecipeCreate'
+                    controller:'Gj.Leftovers.Controllers.CtrlRecipeCreate',
+                    resolve: {
+                        ingredients: appCtrl.getDataIngredients
+                    }
                 });
 
             $routeProvider.when(
@@ -67,6 +71,13 @@ var app = angular
                     templateUrl:'views/QuickSearch.html',
                     controller:'Gj.Leftovers.Controllers.CtrlQuickSearch'
                 });
+            $routeProvider.when('/app', {
+                templateUrl:'views/home.html',
+                controller:'AppCtrl',
+                resolve: {
+                    appInitialized: appCtrl.loadData
+                }
+            });
         }]
     )
 /*************************************************************************
@@ -75,7 +86,6 @@ var app = angular
 .run(['$rootScope', '$timeout', '$location', 'localStorageService', '$route',
     function($rootScope, $timeout, $location, localStorageService, $route){
 
-        /** App post-initialization routine */
 
         // Set header title (in fixed menu bar) to 'MediatheekApp'.
         $rootScope.Title = "Leftovers";
@@ -98,6 +108,56 @@ var app = angular
             $("#tab-bar").closest('.off-canvas-wrap').toggleClass('move-right');
         });
 
+        /** App post-initialization routine */
+        $rootScope.appInitialized = false;
+
+        $rootScope.$on('$routeChangeStart', function(event, next, current){
+            if(!$rootScope.appInitialized){
+                $location.path('/app');
+            }else if($rootScope.appInitialized && $location.path() === '/app'){
+                $location.path('/');
+            }
+        })
+
+        // Global arrays
+        $rootScope.levels= [
+            'Beginner',
+            'Student',
+            'Gevorderde',
+            'Chefkok'
+        ];
+
+        $rootScope.courses= [
+            'Koud voorgerecht',
+            'Warm voorgerecht',
+            'Hoofdschotel',
+            'Tussenschotel',
+            'Ijsdrank',
+            'Nagerecht',
+            'Gebak',
+            'Dessert',
+            'Soepen',
+            'Salades'
+        ];
+
+        $rootScope.types= [
+            'Chinees',
+            'Grieks',
+            'Afrikaans',
+            'Fast-Food',
+            'Vegetarisch',
+            'Stoofpot',
+        ];
+
+        $rootScope.times= [
+            '5',
+            '15',
+            '30',
+            '60',
+            '60+'
+        ];
+
     }
 ]);
+
 

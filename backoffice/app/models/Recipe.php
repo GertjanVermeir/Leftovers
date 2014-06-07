@@ -10,6 +10,8 @@ class Recipe extends Eloquent
         'level',
         'description',
         'course',
+        'persons',
+        'image',
         'type',
         'user_id',
     ];

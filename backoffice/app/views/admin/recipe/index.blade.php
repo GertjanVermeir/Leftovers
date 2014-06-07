@@ -54,7 +54,7 @@
         <td><span class="badge">{{ Count($recipe->ingredients) }}</span></td>
         <td>{{ $recipe->type }}</td>
         <td>
-            @if (Auth::user()->id == $recipe->user->id || Auth::user()->role !== 'Administrator')
+            @if (Auth::user()->id == $recipe->user->id || Auth::user()->role == 'Administrator')
             <!--            SHOW -->
             <a href="{{ route('admin.recipe.show', $recipe->id) }}">
                 <i class="fa fa-search"></i>
