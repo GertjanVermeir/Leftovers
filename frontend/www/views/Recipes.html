@@ -9,7 +9,7 @@
 <div id="#search" ng-show="searchRecipe">
     <div class="row recipe-list-recipe" ng-repeat="recipe in recipes | filter:searchRecipe:strict">
         <div class="small-12 columns">
-            <img src="http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}" >{{ recipe.name }}
+            <a href="#/recipe/{{recipe.id}}"><img src="http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}" >{{ recipe.name }}</a>
         </div>
     </div>
 </div>
@@ -20,7 +20,7 @@
     <div class="recipe-holder">
         <div class="row recipe-list-recipe" ng-repeat="recipe in recipes" ng-if="recipe.course == course" ng-show="selectedCourse == course">
             <div class="small-12 columns">
-                <img src="http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}" >{{ recipe.name }}
+                <a href="#/recipe/{{recipe.id}}"><img src="http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}" >{{ recipe.name }}</a>
             </div>
         </div>
     </div>

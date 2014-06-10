@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="934a508a-2592-420d-b896-5b42bf9f08e9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backoffice/app/database/production.sqlite" afterPath="$PROJECT_DIR$/backoffice/app/database/production.sqlite" />
+      <change type="DELETED" beforePath="C:\BitNami\wampstack-5.4.20-0\apache2\htdocs\leftovers\tesrt\.cordova\config.json" afterPath="" />
+      <change type="DELETED" beforePath="C:\BitNami\wampstack-5.4.20-0\apache2\htdocs\leftovers\tesrt\www\config.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\BitNami\wampstack-5.4.20-0\apache2\htdocs\leftovers\tesrt\www\css\index.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\BitNami\wampstack-5.4.20-0\apache2\htdocs\leftovers\tesrt\www\img\logo.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\BitNami\wampstack-5.4.20-0\apache2\htdocs\leftovers\tesrt\www\index.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\BitNami\wampstack-5.4.20-0\apache2\htdocs\leftovers\tesrt\www\js\index.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlHome.js" afterPath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlHome.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlProfile.js" afterPath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlProfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipe.js" afterPath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipe.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipeCreate.js" afterPath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipeCreate.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipes.js" afterPath="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/scripts/services/LeftoversSrvc.js" afterPath="$PROJECT_DIR$/frontend/www/scripts/services/LeftoversSrvc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/views/RecipeCreate.html" afterPath="$PROJECT_DIR$/frontend/www/views/RecipeCreate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/scripts/controllers/PhotoUploadCtrl.js" afterPath="$PROJECT_DIR$/frontend/www/scripts/controllers/PhotoUploadCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/views/Recipe.html" afterPath="$PROJECT_DIR$/frontend/www/views/Recipe.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/views/Recipes.html" afterPath="$PROJECT_DIR$/frontend/www/views/Recipes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/index.html" afterPath="$PROJECT_DIR$/frontend/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/css/index.less" afterPath="$PROJECT_DIR$/frontend/www/css/index.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/www/scripts/app.js" afterPath="$PROJECT_DIR$/frontend/www/scripts/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="leftovers.iws" />
@@ -37,16 +43,34 @@
       <file leaf-file-name="CtrlRecipeCreate.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipeCreate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="19" selection-start="1003" selection-end="1209" vertical-scroll-proportion="0.0" vertical-offset="554" max-vertical-offset="4165">
+            <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4148">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CtrlRecipes.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipes.js">
+      <file leaf-file-name="CtrlProfile.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="30" selection-start="1249" selection-end="1249" vertical-scroll-proportion="0.0" vertical-offset="358" max-vertical-offset="986">
+            <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CtrlHome.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlHome.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppCtrl.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/AppCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="23" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0" vertical-offset="358" max-vertical-offset="935">
               <folding />
             </state>
           </provider>
@@ -55,7 +79,7 @@
       <file leaf-file-name="Recipes.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/www/views/Recipes.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="103" selection-start="549" selection-end="549" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="595">
+            <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="629">
               <folding />
             </state>
           </provider>
@@ -64,61 +88,45 @@
       <file leaf-file-name="Recipe.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/www/views/Recipe.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="150" selection-start="157" selection-end="237" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="1496">
+            <state line="83" column="6" selection-start="2664" selection-end="2664" vertical-scroll-proportion="-17.923077" vertical-offset="945" max-vertical-offset="1530">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CtrlRecipes.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CtrlRecipe.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CtrlRecipe.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipe.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="20" selection-start="735" selection-end="735" vertical-scroll-proportion="0.32235703" vertical-offset="171" max-vertical-offset="918">
+            <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Home.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/www/views/Home.html">
+      <file leaf-file-name="PhotoUploadCtrl.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/PhotoUploadCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="203" selection-end="243" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="578">
+            <state line="6" column="4" selection-start="136" selection-end="136" vertical-scroll-proportion="0.17677642" vertical-offset="0" max-vertical-offset="1343">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.less" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/www/css/index.less">
+      <file leaf-file-name="NavCtrl.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/NavCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="844" column="16" selection-start="15110" selection-end="15110" vertical-scroll-proportion="-9.6470585" vertical-offset="13856" max-vertical-offset="14501">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/www/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="138" selection-start="2707" selection-end="2707" vertical-scroll-proportion="-3.9230769" vertical-offset="765" max-vertical-offset="2431">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecipeCreate.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/www/views/RecipeCreate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="13" selection-start="3009" selection-end="3009" vertical-scroll-proportion="-13.076923" vertical-offset="459" max-vertical-offset="2023">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/www/scripts/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="24" selection-start="4483" selection-end="4501" vertical-scroll-proportion="0.0" vertical-offset="2040" max-vertical-offset="2873">
+            <state line="34" column="17" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
               <folding />
             </state>
           </provider>
@@ -149,22 +157,26 @@
         <option value="$PROJECT_DIR$/backoffice/app/views/admin/recipe/edit.blade.php" />
         <option value="$PROJECT_DIR$/backoffice/app/controllers/API/RecipeController.php" />
         <option value="$PROJECT_DIR$/backoffice/app/controllers/Admin/ReceptController.php" />
-        <option value="$PROJECT_DIR$/frontend/www/views/Recipe.html" />
         <option value="$PROJECT_DIR$/frontend/www/css/index.css" />
         <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/AppCtrl.js" />
         <option value="$PROJECT_DIR$/frontend/www/bower_components/angular-local-storage/angular-local-storage.js" />
-        <option value="$PROJECT_DIR$/frontend/www/scripts/app.js" />
         <option value="$PROJECT_DIR$/frontend/www/bower_components/allmighty-autocomplete/script/autocomplete.js" />
         <option value="$PROJECT_DIR$/frontend/www/bower_components/jquery-ui/js/jquery-ui-1.10.4.custom.js" />
         <option value="$PROJECT_DIR$/frontend/www/scripts/services/smoothScroll.js" />
         <option value="$PROJECT_DIR$/frontend/www/views/RecipeCreate.html" />
-        <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipeCreate.js" />
         <option value="$PROJECT_DIR$/frontend/www/scripts/services/LeftoversSrvc.js" />
         <option value="$PROJECT_DIR$/frontend/www/index.html" />
-        <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipes.js" />
         <option value="$PROJECT_DIR$/frontend/www/css/index.less" />
         <option value="$PROJECT_DIR$/frontend/www/views/Recipes.html" />
+        <option value="$PROJECT_DIR$/frontend/www/scripts/app.js" />
+        <option value="$PROJECT_DIR$/frontend/www/views/Recipe.html" />
+        <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/photoUploadCtrl.js" />
+        <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlHome.js" />
+        <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlProfile.js" />
         <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipe.js" />
+        <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipeCreate.js" />
+        <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipes.js" />
+        <option value="$PROJECT_DIR$/frontend/www/scripts/controllers/PhotoUploadCtrl.js" />
       </list>
     </option>
   </component>
@@ -207,16 +219,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="leftovers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="leftovers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="leftovers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -317,7 +319,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="leftovers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="leftovers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="leftovers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="leftovers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -408,11 +446,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backoffice/app/views/admin/recipe/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="69" selection-start="771" selection-end="771" vertical-scroll-proportion="-17.0" vertical-offset="255" max-vertical-offset="1581" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backoffice/app/views/admin/recipe/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="77" selection-start="1532" selection-end="1532" vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="1513" />
@@ -446,11 +479,6 @@
     <entry file="file://$PROJECT_DIR$/frontend/www/views/Profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="272" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backoffice/vendor/monolog/monolog/tests/Monolog/Handler/StreamHandlerTest.php">
@@ -521,11 +549,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1547" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/AppCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="23" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1071" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/www/bower_components/jquery-ui/js/jquery-1.10.2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1073" column="40" selection-start="26256" selection-end="26257" vertical-scroll-proportion="-7.0384617" vertical-offset="18058" max-vertical-offset="166838" />
@@ -539,16 +562,6 @@
     <entry file="file://$PROJECT_DIR$/frontend/www/bower_components/jquery-ui/js/jquery-ui-1.10.4.custom.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2045" column="18" selection-start="58534" selection-end="58534" vertical-scroll-proportion="0.8076923" vertical-offset="34786" max-vertical-offset="177429" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/NavCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="17" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlHome.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="53" selection-start="88" selection-end="131" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/www/bower_components/allmighty-autocomplete/script/autocomplete.js">
@@ -627,58 +640,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/services/LeftoversSrvc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="46" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="1462">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="24" selection-start="4483" selection-end="4501" vertical-scroll-proportion="0.0" vertical-offset="2040" max-vertical-offset="2873">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/www/views/Home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="203" selection-end="243" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="578">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="138" selection-start="2707" selection-end="2707" vertical-scroll-proportion="-3.9230769" vertical-offset="765" max-vertical-offset="2431">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/views/RecipeCreate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="13" selection-start="3009" selection-end="3009" vertical-scroll-proportion="-13.076923" vertical-offset="459" max-vertical-offset="2023">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="30" selection-start="1249" selection-end="1249" vertical-scroll-proportion="0.0" vertical-offset="358" max-vertical-offset="986">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipeCreate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="19" selection-start="1003" selection-end="1209" vertical-scroll-proportion="0.0" vertical-offset="554" max-vertical-offset="4165">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/www/views/Recipe.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="150" selection-start="157" selection-end="237" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="1496">
           <folding />
         </state>
       </provider>
@@ -690,16 +654,102 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/views/RecipeCreate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="13" selection-start="3009" selection-end="3009" vertical-scroll-proportion="-13.076923" vertical-offset="459" max-vertical-offset="2023">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="96" selection-start="2806" selection-end="2821" vertical-scroll-proportion="-4.576923" vertical-offset="765" max-vertical-offset="2431">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="30" selection-start="1939" selection-end="1939" vertical-scroll-proportion="0.0" vertical-offset="712" max-vertical-offset="2992">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/services/LeftoversSrvc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="61" selection-start="1883" selection-end="1883" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1462">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/www/views/Recipes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="103" selection-start="549" selection-end="549" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="595">
+        <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="629">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/views/Recipe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="6" selection-start="2664" selection-end="2664" vertical-scroll-proportion="-17.923077" vertical-offset="945" max-vertical-offset="1530">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/AppCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="23" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0" vertical-offset="358" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlHome.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipe.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="20" selection-start="735" selection-end="735" vertical-scroll-proportion="0.32235703" vertical-offset="171" max-vertical-offset="918">
+        <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipeCreate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4148">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/CtrlRecipes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/NavCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="17" selection-start="1764" selection-end="1764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/www/scripts/controllers/PhotoUploadCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="4" selection-start="136" selection-end="136" vertical-scroll-proportion="0.17677642" vertical-offset="0" max-vertical-offset="1343">
           <folding />
         </state>
       </provider>

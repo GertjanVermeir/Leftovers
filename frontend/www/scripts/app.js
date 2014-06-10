@@ -61,6 +61,13 @@ var app = angular
                 });
 
             $routeProvider.when(
+                '/recipe/:recipeId', {
+                templateUrl:'views/Recipe.html',
+                controller:'Gj.Leftovers.Controllers.CtrlRecipe',
+            });
+
+
+            $routeProvider.when(
                 '/profile', {
                     templateUrl:'views/Profile.html',
                     controller:'Gj.Leftovers.Controllers.CtrlProfile'

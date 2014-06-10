@@ -5,24 +5,22 @@
     // Add to global controllers
     var controllers = angular.module('Gj.Leftovers.Controllers');
 
-    // Set up as CtrlCampusPicker
     controllers.controller('Gj.Leftovers.Controllers.CtrlRecipe',
-        ['$scope', '$rootScope', '$http', 'localStorageService', '$location',
-        function($scope, $rootScope, $http, localStorageService, $location)
+        ['$scope', '$rootScope', '$http', 'localStorageService', '$location','$routeParams',
+        function($scope, $rootScope, $http, localStorageService, $location,$routeParams)
         {
 
             $rootScope.Title = "Gerechten";
+            var id = $routeParams.recipeId;
 
-            var apiUrl = $rootScope.linkAPI + "recipe/1?jsonp=JSON_CALLBACK";
+            var apiUrl = $rootScope.linkAPI + "recipe/"+ id +"?jsonp=JSON_CALLBACK";
 
             $http.jsonp(apiUrl).
                 success(function(data, status, headers, config){
                     $scope.recipe = data;
                     $scope.recipeInitialized = true;
-                    $scope.init();
-
-                }).
-                error(function(data, status, headers, config){
+                })
+                .error(function(data, status, headers, config){
                     alert('Recept kon niet gevonden worden.');
                 });
 

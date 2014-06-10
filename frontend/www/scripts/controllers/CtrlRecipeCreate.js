@@ -5,7 +5,6 @@
     // Add to global controllers
     var controllers = angular.module('Gj.Leftovers.Controllers');
 
-    // Set up as CtrlCampusPicker
     controllers.controller('Gj.Leftovers.Controllers.CtrlRecipeCreate',
         ['$scope', '$rootScope', '$http', 'localStorageService', '$location', 'Gj.Leftovers.Services.LeftoversSrvc', 'ingredients', '$anchorScroll',
         function($scope, $rootScope, $http, localStorageService, $location, LeftoversSrvc , ingredients, $anchorScroll)
