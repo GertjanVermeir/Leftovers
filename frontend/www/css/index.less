@@ -11,6 +11,10 @@
 @darkgreen: #489A7A;
 @menuwhite: rgba(255,255,255,0.7);
 
+#view{
+  background-color: #FFFEF8 !important;
+}
+
 body{
   font-family: "Calibri", "Roboto", sans-serif !important;
   overflow: hidden;
@@ -802,4 +806,42 @@ p.delete:hover, p.delete:active, p.delete:active{
   margin: 0;
   border-left: 2px solid @mainred;
   border-bottom: 2px solid #CCC;
+}
+
+.grey-border{
+  border: 1px solid @lightergrey !important;
+}
+
+#quickSearch{
+  margin-bottom: 0;
+}
+
+.recipe-list-course{
+  clear: both;
+  float: left;
+  width: calc(~"100% - 40px");
+}
+
+.recipe-list-course + p{
+  background-color: @mainred;
+  float: left;
+  width: 40px;
+  padding: 8px;
+  text-align: center;
+  border-bottom: 3px solid @darkred;
+  margin: 0;
+  color: white;
+}
+
+.recipe-list-recipe{
+  clear: both;
+  border: 1px solid #CCC;
+  padding: 8px 3px;
+  background-color: #FFF;
+  margin: 0 !important;
+
+  img{
+    width: 50px;
+    height: 50px;
+  }
 }

@@ -19,36 +19,60 @@
             $rootScope.Title = "Nieuw Recept";
             $scope.step = "1";
 
-            var amount = 4;
-
             // Recipe Create
             // ------------------
             $scope.create = function(recipe){
 
-                recipe.ingredient = [1];
-                recipe.amount = [5];
-                recipe.description = 'Jajaja';
-                $scope.recipe = {};
-
-                    $scope.formerror = "";
-
-                    // check form validation
-                    if($scope.createForm.$valid){
-
-                        var recipeURL = $rootScope.linkAPI + "recipe?jsonp=JSON_CALLBACK";
-                        recipe = JSON.stringify(recipe);
-
-                        $http.post(recipeURL, recipe).success(function(result){
-                            if(result === '"Je recept werd toegevoegd."' )
-                            {
-                                alert('yes');
-                            }else{
-                                $scope.formerror = "Oeps. Je recept kon niet toegevoegd worde.";
-                            }
-                        });
+                $scope.error ="";
+                var count = 0;
+                var checkSteps = true;
+                $('textarea').each(function(){
+                    count++;
+                    if(!$(this).val())
+                    {
+                        checkSteps = false;
                     }
-                    // form invalid
-                    else{ $scope.formerror = "Foutieve ingave. Controleer alle velden."; }
+                });
+                if(count < 3){
+                    $scope.error = "Vul minstens 3 stappen in.";
+                    return;
+                }
+                else if(checkSteps == false){
+                    $scope.error = "Vul alle stappen in.";
+                    return;
+                }
+
+                recipe.amount = [];
+                recipe.description = "";
+                recipe.ingredient = [];
+                recipe.mainimage = 'jaja';
+                recipe.user_id = 1;
+
+                $('.amount').each(function(){
+                    recipe.amount.push($(this).val());
+                });
+
+                $('textarea').each(function(){
+                    recipe.description += '<p>'+ $(this).val() +'</p>';
+                });
+
+                $('.ings').each(function(){
+                    recipe.ingredient.push($(this).val());
+                });
+
+                var recipeURL = $rootScope.linkAPI + "recipe";
+                recipe = JSON.stringify(recipe);
+                console.log(recipe);
+
+                $http.post(recipeURL, recipe).success(function(result){
+                    if(result === '"Je recept werd toegevoegd."' )
+                    {
+                        alert('yes');
+                    }else{
+                        $scope.formerror = "Oeps. Je recept kon niet toegevoegd worde.";
+                    }
+
+                });
             };
 
             function capitaliseFirstLetter(string)
@@ -65,22 +89,6 @@
                     $scope.step++;
                     $scope.error ="";
                 }
-                else if($scope.step == 4){
-                    $scope.error ="";
-                    var checkSteps = true;
-                    $('textarea').each(function(){
-                        if(!$(this).val())
-                        {
-                            checkSteps = false;
-                        }
-                    });
-                    if(checkSteps == false){
-                        $scope.error = "Vul alle stappen in.";
-                    }
-                    else{
-                        //FINAL FORM
-                    }
-                }
                 else if($scope.step == 3){
 
                     $( ".delete" ).click(function() {
@@ -91,8 +99,10 @@
                     var checkAmounts = true;
                     var checkIngs = true;
                     var checkDB = true;
+                    var count = 0;
 
                     $('.allIng').each(function(){
+                        count++;
 
                         if($(this).children('.amount').val() <= 0 || !$(this).children('.amount').val())
                         {
@@ -112,8 +122,10 @@
                         }
 
                     });
-
-                    if(checkAmounts == false && checkIngs == false){
+                    if(count < 3){
+                        $scope.error = "Vul minstens 3 ingrediënten in.";
+                    }
+                    else if(checkAmounts == false && checkIngs == false){
                         $scope.error = "De hoeveelheden en ingrediënten zijn niet correct ingevuld.";
                     }
                     else if(checkIngs == false){
@@ -153,10 +165,8 @@
 
             $scope.addIngredient = function()
             {
-               amount++;
-
-               var template = "<div class='allIng' ><input required placeholder='Ingrediënt' class='ings' ng-model='recipe.ingredients" + amount + "'>" +
-                "<input required type='number' placeholder='0' ng-model='recipe.amounts"+ amount +"' class='amount'><p class='grey'></p><p class='delete' ng-click='deleteIng("+ amount +")'><i class='fa fa-trash-o'></i></p></div>";
+               var template = "<div class='allIng' ><input required placeholder='Ingrediënt' class='ings' >" +
+                "<input required type='number' placeholder='0' class='amount'><p class='grey'></p><p class='delete'><i class='fa fa-trash-o'></i></p></div>";
 
                 $('#ingredient-holder').append(template);
 
@@ -178,11 +188,9 @@
                 $(this).parent().remove();
             });
 
-            var stepAmount = "4";
             $scope.addStep = function()
             {
-                stepAmount++;
-                var template = '<textarea placeholder="Volgende stap" required ng-model="recipe.step'+stepAmount+'"> </textarea><p class="deleteStep"><i class="fa fa-trash-o"></i></p>';
+                var template = '<textarea placeholder="Volgende stap" required> </textarea><p class="deleteStep"><i class="fa fa-trash-o"></i></p>';
 
                 $('#form-steps').append(template);
 
@@ -208,7 +216,7 @@
                         // headers: {'header-key': 'header-value'},
                         // withCredentials: true,
                         data: {myObj: $scope.myModelObj},
-                        file: file, // or list of files: $files for html5 only
+                        file: file // or list of files: $files for html5 only
                         /* set the file formData name ('Content-Desposition'). Default is 'file' */
                         //fileFormDataName: myFile, //or a list of names for multiple files (html5).
                         /* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */

@@ -19,6 +19,7 @@
                 success(function(data, status, headers, config){
                     $scope.recipe = data;
                     $scope.recipeInitialized = true;
+                    $scope.init();
 
                 }).
                 error(function(data, status, headers, config){
@@ -43,7 +44,6 @@
                 $scope.init();
             };
 
-            $scope.init();
 
         }])
 })()

@@ -6,7 +6,7 @@
     services.factory('Gj.Leftovers.Services.LeftoversSrvc',
     ['$rootScope', '$http', '$q', 'localStorageService', function($rootScope, $http, $q, localStorageService){
 
-        $rootScope.linkAPI = "http://192.168.0.240/leftovers/backoffice/public/api/";
+        $rootScope.linkAPI = "http://localhost/leftovers/backoffice/public/api/";
 
         var URLINGREDIENT = $rootScope.linkAPI + "ingredient?jsonp=JSON_CALLBACK";
         var MSGINGREDIENTERROR = "Could not load the ingredient data from the requested URI.";

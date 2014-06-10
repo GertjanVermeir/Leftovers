@@ -18,11 +18,36 @@
             $http.jsonp(apiUrl).
                 success(function(data, status, headers, config){
                     $scope.recipes = data;
-                    $scope.recipeInitialized = true;
+                    $scope.recipesInitialized = true;
 
                 }).
                 error(function(data, status, headers, config){
                     alert('Recepten kunnen niet gevonden worden.');
                 });
+
+
+             $scope.recipeCount = function(course) {
+                var result = 0;
+                 $.each($scope.recipes, function(index, value){
+                     var recipeCourse = value.course;
+                     if(recipeCourse == course){
+                        result++;
+                     }
+                 });
+                return result;
+            }
+
+            $scope.selectedCourse = "";
+
+            $scope.showRecipes = function(course){
+                if($scope.selectedCourse == course)
+                {
+                    $scope.selectedCourse = "";
+                }
+                else{
+                    $scope.selectedCourse = course;
+                }
+
+            }
         }])
 })()
