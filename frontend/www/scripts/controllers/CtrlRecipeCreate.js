@@ -6,8 +6,8 @@
     var controllers = angular.module('Gj.Leftovers.Controllers');
 
     controllers.controller('Gj.Leftovers.Controllers.CtrlRecipeCreate',
-        ['$scope', '$rootScope', '$http', 'localStorageService', '$location', 'Gj.Leftovers.Services.LeftoversSrvc', 'ingredients', '$anchorScroll',
-        function($scope, $rootScope, $http, localStorageService, $location, LeftoversSrvc , ingredients, $anchorScroll)
+        ['$scope', '$rootScope', '$http', 'localStorageService', '$location', 'Gj.Leftovers.Services.LeftoversSrvc', 'ingredients','$upload','$q',
+        function($scope, $rootScope, $http, localStorageService, $location, LeftoversSrvc , ingredients, $upload,$q)
         {
             $scope.ingredients = [];
 
@@ -18,10 +18,78 @@
             $rootScope.Title = "Nieuw Recept";
             $scope.step = "1";
 
-            // Recipe Create
+            // File Upload
             // ------------------
-            $scope.create = function(recipe){
+            $scope.onFileSelect = function($files,recipe) {
+                $scope.fileName = $files[0].name;
+                $scope.files = $files;
+            };
 
+            $scope.uploadImage = function($files,recipe){
+
+                for (var i = 0; i < $files.length; i++) {
+                    var file = $files[i];
+                    var image = '';
+                    $scope.upload = $upload.upload({
+                        url: $rootScope.linkAPI + 'image', //upload.php script, node.js route, or servlet url
+                        data: {},
+                        file: file
+                    }).progress(function(evt) {
+                        //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                    }).success(function(data, status, headers, config) {
+                        // file is uploaded successfully
+                        image = data.substring(1, data.length-1);
+                    }).then(function() {
+                        $scope.create(recipe,image);
+                    });
+                    //.error(...)
+                    //.then(success, error, progress);
+                    //.xhr(function(xhr){xhr.upload.addEventListener(...)})// access and attach any event listener to XMLHttpRequest.
+                }
+            };
+
+            // Create Recipe
+            $scope.create = function(recipe,image){
+                $scope.error ="";
+
+                recipe.mainimage = image;
+                recipe.amount = [];
+                recipe.description = "";
+                recipe.ingredient = [];
+                recipe.user_id = $rootScope.loggedUser.id;
+
+                $('.amount').each(function(){
+                    recipe.amount.push($(this).val());
+                });
+
+                $('textarea').each(function(){
+                    recipe.description += '<p>'+ $(this).val() +'</p>';
+                });
+
+                $('.ings').each(function(){
+                    recipe.ingredient.push($(this).val());
+                });
+
+                var recipeURL = $rootScope.linkAPI + "recipe";
+                recipe = JSON.stringify(recipe);
+
+                console.log(recipe);
+
+
+                $http.post(recipeURL, recipe).success(function(result){
+                    if(result === '"Je recept werd toegevoegd."' )
+                    {
+                        $location.path('/recipes');
+                    }else{
+                        $scope.error = "Oeps. Je recept kon niet toegevoegd worde.";
+                    }
+
+                });
+            };
+
+            // Last validation
+            // ------------------
+            $scope.validate = function(recipe){
                 $scope.error ="";
                 var count = 0;
                 var checkSteps = true;
@@ -41,37 +109,9 @@
                     return;
                 }
 
-                recipe.amount = [];
-                recipe.description = "";
-                recipe.ingredient = [];
-                recipe.mainimage = 'jaja';
-                recipe.user_id = 1;
+                $scope.uploadImage($scope.files,recipe);
 
-                $('.amount').each(function(){
-                    recipe.amount.push($(this).val());
-                });
 
-                $('textarea').each(function(){
-                    recipe.description += '<p>'+ $(this).val() +'</p>';
-                });
-
-                $('.ings').each(function(){
-                    recipe.ingredient.push($(this).val());
-                });
-
-                var recipeURL = $rootScope.linkAPI + "recipe";
-                recipe = JSON.stringify(recipe);
-                console.log(recipe);
-
-                $http.post(recipeURL, recipe).success(function(result){
-                    if(result === '"Je recept werd toegevoegd."' )
-                    {
-                        alert('yes');
-                    }else{
-                        $scope.formerror = "Oeps. Je recept kon niet toegevoegd worde.";
-                    }
-
-                });
             };
 
             function capitaliseFirstLetter(string)
@@ -79,14 +119,21 @@
                 return string.charAt(0).toUpperCase() + string.slice(1);
             }
 
-            var dropdown;
+            $scope.fileSelected = false;
 
             $scope.next = function()
             {
                 if(($scope.step == 1 && $scope.step1form.$valid) || ($scope.step == 2 && $scope.step2form.$valid))
                 {
-                    $scope.step++;
-                    $scope.error ="";
+                    if($scope.fileName)
+                    {
+                        $scope.step++;
+                        $scope.error ="";
+                    }
+                    else{
+                        $scope.error = "Gelieve een afbeelding te kiezen";
+                    }
+
                 }
                 else if($scope.step == 3){
 
@@ -204,32 +251,5 @@
                 $(this).prev().remove();
                 $(this).remove();
             });
-
-            $scope.onFileSelect = function($files) {
-                //$files: an array of files selected, each file has name, size, and type.
-                for (var i = 0; i < $files.length; i++) {
-                    var file = $files[i];
-                    $scope.upload = $upload.upload({
-                        url: '../', //upload.php script, node.js route, or servlet url
-                        // method: 'POST' or 'PUT',
-                        // headers: {'header-key': 'header-value'},
-                        // withCredentials: true,
-                        data: {myObj: $scope.myModelObj},
-                        file: file // or list of files: $files for html5 only
-                        /* set the file formData name ('Content-Desposition'). Default is 'file' */
-                        //fileFormDataName: myFile, //or a list of names for multiple files (html5).
-                        /* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */
-                        //formDataAppender: function(formData, key, val){}
-                    }).progress(function(evt) {
-                        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-                    }).success(function(data, status, headers, config) {
-                        // file is uploaded successfully
-                        console.log(data);
-                    });
-                    //.error(...)
-                    //.then(success, error, progress);
-                    //.xhr(function(xhr){xhr.upload.addEventListener(...)})// access and attach any event listener to XMLHttpRequest.
-                }
-            };
         }])
 })()

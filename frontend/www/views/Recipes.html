@@ -4,24 +4,46 @@
     <a href="#/recipe/create"><div class="small-12 medium-12 columns button-blue">Nieuw Recept</div></a>
 </div>
 
-<input type="text" id="quickSearch" ng-model="searchRecipe.name" type="text" placeholder="Snel zoeken">
+<input type="text" id="quickSearchRecipes" ng-model="searchRecipe.name" type="text" placeholder="Zoeken in mijn gerechten">
 
-<div id="#search" ng-show="searchRecipe">
-    <div class="row recipe-list-recipe" ng-repeat="recipe in recipes | filter:searchRecipe:strict">
-        <div class="small-12 columns">
-            <a href="#/recipe/{{recipe.id}}"><img src="http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}" >{{ recipe.name }}</a>
+<div id="search" ng-show="searchRecipe.name.length">
+
+    <div id="info" class="row info" ng-show="filtered.length == 0">
+        <div class="info-chef"><img src="img/chef.png"></div>
+        <div class="info-content">
+            <p>
+                Ik heb geen gerechten van je gevonden met de zoekterm die je gaf.
+            </p>
+            <p class="infoButton">
+                <a href="#/recipe/create">> Nieuw gerecht.</a>
+            </p>
+            <p class="infoButton">
+                <a ng-Click="clearInput()">> Jouw gerechten.</a>
+            </p>
         </div>
+    </div>
+
+    <div class="row recipe-list-recipe" ng-repeat="recipe in filtered  = ( recipes | filter:searchRecipe:strict)">
+            <a href="#/recipe/{{recipe.id}}">
+                <div class="small-12 columns searches">
+                    <img src="{{linkIMAGE}}recipes/{{ recipe.image }}" >{{ recipe.name }}
+                </div>
+            </a>
     </div>
 </div>
 
-<div class="row" ng-repeat="course in courses" ng-if="recipesInitialized == true && !searchRecipe">
+<div class="row" ng-repeat="course in courses" ng-if="!searchRecipe.name.length">
     <h2 class="bar yellow recipe-list-course" ng-Click="showRecipes(course)">{{ course }}</h2><p>{{ recipeCount(course) }}</p>
 
     <div class="recipe-holder">
         <div class="row recipe-list-recipe" ng-repeat="recipe in recipes" ng-if="recipe.course == course" ng-show="selectedCourse == course">
-            <div class="small-12 columns">
-                <a href="#/recipe/{{recipe.id}}"><img src="http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}" >{{ recipe.name }}</a>
-            </div>
+
+                <a href="#/recipe/{{recipe.id}}">
+                    <div class="small-12 columns">
+                    <img src="{{linkIMAGE}}recipes/{{ recipe.image }}" ><span>{{ recipe.name }}</span>
+                    </div>
+                </a>
+
         </div>
     </div>
 </div>

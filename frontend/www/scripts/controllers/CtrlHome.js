@@ -10,7 +10,7 @@
         function($scope, $rootScope, $http, localStorageService, $timeout, $location)
         {
 
-            $rootScope.Title = "leftovers";
+            $rootScope.Title = "Leftovers";
 
         }])
 })()

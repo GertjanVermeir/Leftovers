@@ -33,6 +33,18 @@ Route::group(['prefix' => 'api'], function () {
         ]
     ]);
 
+    Route::resource('image', 'API_ImageController', [
+        'except' => [
+
+        ]
+    ]);
+
+    Route::resource('recipes', 'API_RecipesController', [
+        'except' => [
+
+        ]
+    ]);
+
     Route::resource('ingredient', 'API_IngredientController', [
         'except' => [
 
@@ -70,6 +82,8 @@ Route::group(['prefix' => 'api'], function () {
 
                 if (Auth::attempt($creds)) {
                     $user = Auth::user();
+
+                    $user->load('recipes');
 
                     Auth::logout();
 

@@ -7,9 +7,14 @@
  * Return the promises
  * Resolve for each route
  */
-var appCtrl = app.controller('AppCtrl', ['$scope', '$location', 'appInitialized', function($scope, $location, appInitialized){
+var appCtrl = app.controller('AppCtrl', ['$scope', '$location', 'appInitialized','localStorageService','$rootScope', function($scope, $location, appInitialized, localStorageService,$rootScope){
     if(appInitialized){
-        $location.path('/');
+        if(localStorageService.get('user')){
+            $rootScope.loggedUser = localStorageService.get('user');
+            $location.path('/home');
+        }else{
+            $location.path('/login');
+        }
     }
 }]);
 

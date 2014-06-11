@@ -12,17 +12,19 @@
 
             $rootScope.Title = "Recepten";
 
-            var apiUrl = $rootScope.linkAPI + "recipe?jsonp=JSON_CALLBACK";
+            $scope.recipes = $rootScope.loggedUser.recipes;
 
-            $http.jsonp(apiUrl).
-                success(function(data, status, headers, config){
-                    $scope.recipes = data;
-                    $scope.recipesInitialized = true;
-
-                }).
-                error(function(data, status, headers, config){
-                    alert('Recepten kunnen niet gevonden worden.');
-                });
+//            var apiUrl = $rootScope.linkAPI + "recipe?jsonp=JSON_CALLBACK";
+//
+//            $http.jsonp(apiUrl).
+//                success(function(data, status, headers, config){
+//                    $scope.recipes = data;
+//                    $scope.recipesInitialized = true;
+//
+//                }).
+//                error(function(data, status, headers, config){
+//                    alert('Recepten kunnen niet gevonden worden.');
+//                });
 
 
              $scope.recipeCount = function(course) {
@@ -34,7 +36,14 @@
                      }
                  });
                 return result;
-            }
+            };
+
+            $scope.clearInput = function(){
+                    $('#quickSearchRecipes').val("");
+                    $scope.searchRecipe.name = '';
+            };
+
+
 
             $scope.selectedCourse = "";
 

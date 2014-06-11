@@ -1,5 +1,6 @@
 'use strict';
 
+angular.module('LocalStorageModule').value('prefix', 'leftovers_');
 angular.module('Gj.Leftovers.Controllers', []);
 angular.module('Gj.Leftovers.Directives', []);
 angular.module('Gj.Leftovers.Services', []);
@@ -14,12 +15,13 @@ var app = angular
     'ngRoute',
     'ngAnimate',
     'ui.directives',
+    'angularFileUpload',
     'autocomplete',
     'Gj.Leftovers.Controllers',
     'Gj.Leftovers.Directives',
     'Gj.Leftovers.Services',
     'LocalStorageModule',
-    'ngResource',
+    'ngResource'
     ]
     )
     //
@@ -35,9 +37,31 @@ var app = angular
              ROUTES SETUP
              **************/
             $routeProvider.when(
-                '/', {
+                '/home', {
                     templateUrl:'views/Home.html',
                     controller:'Gj.Leftovers.Controllers.CtrlHome'
+                });
+
+            $routeProvider.when(
+                '/login', {
+                    templateUrl:'views/Login.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlLogin'
+
+                });
+
+            $routeProvider.when(
+                '/logout', {
+                    templateUrl:'views/Logout.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlLogout',
+                });
+
+            $routeProvider.when(
+                '/register', {
+                    templateUrl:'views/Register.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlRegister',
+                    resolve: {
+                        countries: appCtrl.getDataCountries
+                    }
                 });
 
             $routeProvider.when(
@@ -63,7 +87,7 @@ var app = angular
             $routeProvider.when(
                 '/recipe/:recipeId', {
                 templateUrl:'views/Recipe.html',
-                controller:'Gj.Leftovers.Controllers.CtrlRecipe',
+                controller:'Gj.Leftovers.Controllers.CtrlRecipe'
             });
 
 
@@ -85,6 +109,7 @@ var app = angular
                     appInitialized: appCtrl.loadData
                 }
             });
+            $routeProvider.otherwise({redirectTo: '/home'});
         }]
     )
 /*************************************************************************
@@ -93,14 +118,15 @@ var app = angular
 .run(['$rootScope', '$timeout', '$location', 'localStorageService', '$route',
     function($rootScope, $timeout, $location, localStorageService, $route){
 
-
         // Set header title (in fixed menu bar) to 'MediatheekApp'.
         $rootScope.Title = "Leftovers";
         $rootScope.GlobalSearchTerm = null;
         $rootScope.returnToSearch = false;
 
         // Link to API
-        $rootScope.linkAPI = "http://localhost/leftovers/backoffice/public/api/";
+        $rootScope.linkAPI = "http://192.168.0.240/leftovers/backoffice/public/api/";
+        $rootScope.backoffice = "http://192.168.0.240/leftovers/backoffice/";
+        $rootScope.linkIMAGE = "http://192.168.0.240/leftovers/backoffice/public/images/";
 
         // Set rootScope 'Page Initialized' property to true after page has loaded
         $rootScope.pageInitialized = true;
@@ -122,9 +148,11 @@ var app = angular
             if(!$rootScope.appInitialized){
                 $location.path('/app');
             }else if($rootScope.appInitialized && $location.path() === '/app'){
-                $location.path('/');
+                $location.path('/login');
             }
-        })
+        });
+
+
 
         // Global arrays
         $rootScope.levels= [
@@ -153,7 +181,7 @@ var app = angular
             'Afrikaans',
             'Fast-Food',
             'Vegetarisch',
-            'Stoofpot',
+            'Stoofpot'
         ];
 
         $rootScope.times= [

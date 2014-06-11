@@ -37,7 +37,7 @@
         <div class="app" id="wrapper">
             <div class="off-canvas-wrap">
                 <div class="inner-wrap">
-                    <nav class="tab-bar" id="tab-bar">
+                    <nav class="tab-bar" id="tab-bar" ng-hide="isRouteActive('/login')">
                         <section class="left-small">
                             <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
                         </section>
@@ -46,14 +46,17 @@
                         </section>
                     </nav>
 
-                    <aside class="left-off-canvas-menu">
+                    <aside class="left-off-canvas-menu" ng-hide="isRouteActive('/login')">
                         <ul class="off-canvas-list main-nav" ng-controller="Gj.Leftovers.Controllers.NavCtrl">
-                            <li ng-class="{ active: isRouteActive('/') }"><a href="#"><img src="img/menu-logo.png"> Home</a></li>
-                            <li ng-class="{ active: isRouteActive('/recipes') }"><a href="#/recipes"><img src="img/menu-recept.png"> Mijn Recepten</a></li>
-                            <li ng-class="{ active: isRouteActive('/book') }"><a href="#/recipe"><img src="img/menu-book.png">Kookboeken</a></li>
-                            <li ng-class="{ active: isRouteActive('/following') }"><a href="#/info/mar"><img src="img/menu-friends.png"> Vriendenlijst</a></li>
-                            <li ng-class="{ active: isRouteActive('/config') }"><a href="#"><img src="img/menu-settings.png"> Instellingen</a></li>
-                            <li ng-class="{ active: isRouteActive('/profile') }"><a href="#/profile"><img src="img/menu-settings.png"> Mijn Profiel</a></li>
+                            <li class="active" ng-hide="loggedUser"><a href="#/login"><img src="img/menu-logo.png"> Aanmelden</a></li>
+
+                            <li ng-show="loggedUser" ng-class="{ active: isRouteActive('/home') }"><a href="#/home"><img src="img/menu-logo.png"> Leftovers</a></li>
+                            <li ng-show="loggedUser" ng-class="{ active: isRouteActive('/recipes') }"><a href="#/recipes"><img src="img/menu-recept.png"> Mijn Recepten</a></li>
+                            <li ng-show="loggedUser" ng-class="{ active: isRouteActive('/book') }"><a href="#/recipe"><img src="img/menu-book.png">Kookboeken</a></li>
+                            <li ng-show="loggedUser" ng-class="{ active: isRouteActive('/following') }"><a href="#/info/mar"><img src="img/menu-friends.png"> Vriendenlijst</a></li>
+                            <li ng-show="loggedUser" ng-class="{ active: isRouteActive('/config') }"><a href="#"><img src="img/menu-settings.png"> Instellingen</a></li>
+                            <li ng-show="loggedUser" ng-class="{ active: isRouteActive('/profile') }"><a href="#/profile"><img src="img/menu-settings.png"> Mijn Profiel</a></li>
+                            <li ng-show="loggedUser"><a href="#/logout"><img src="img/menu-logo.png"> Afmelden</a></li>
                             <li><label><i class="fa fa-search"></i> Recept Zoeken</label></li>
                             <li><input type="text" id="quickSearch" ui-keypress="{13:'enterAndSearch()'}" ng-model="searchTerm" type="text" placeholder="Snel zoeken"></li>
                             <li><a ng-click="confirmSearchRequest(); $event.preventDefault()" href="#/quick-search" class="confirm-search-button" ng-show="searchTerm.length>=3" ><i class="fa fa-check"></i> Zoeken</a></li>
@@ -61,8 +64,8 @@
                     </aside>
 
                     <section class="main-section" id="leftovers-app">
-                        <div id="view" class="main">
-                            <div id="ngview" class="main" ng-view></div>
+                        <div id="view" class="main" ng-class="{ login: isRouteActive('/login') }">
+                            <div id="ngview" class="main"  ng-view></div>
                         </div>
                     </section>
                     <a class="exit-off-canvas"></a>
@@ -108,13 +111,16 @@
         <!-- ANGULAR CONTROLLERS LOAD AFTER APP.JS -->
         <script src="scripts/controllers/AppCtrl.js"></script>
         <script src="scripts/controllers/NavCtrl.js"></script>
+        <script src="scripts/controllers/CtrlHome.js"></script>
         <script src="scripts/controllers/CtrlRecipes.js"></script>
         <script src="scripts/controllers/CtrlRecipe.js"></script>
         <script src="scripts/controllers/CtrlRecipeCreate.js"></script>
         <script src="scripts/controllers/CtrlProfile.js"></script>
+        <script src="scripts/controllers/CtrlLogout.js"></script>
+        <script src="scripts/controllers/CtrlLogin.js"></script>
+        <script src="scripts/controllers/CtrlRegister.js"></script>
         <script type="text/javascript" src="bower_components/allmighty-autocomplete/script/autocomplete.js"></script>
         <!-- Leftovers -->
-        <script src="scripts/controllers/CtrlHome.js"></script>
         <script src="scripts/services/LeftoversSrvc.js"></script>
         <!-- END OF ANGULAR CONTROLLERS -->
 

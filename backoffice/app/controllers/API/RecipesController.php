@@ -1,6 +1,6 @@
 <?php
 
-class API_RecipeController extends \BaseController
+class API_RecipesController extends \BaseController
 {
 
     /**
@@ -18,27 +18,18 @@ class API_RecipeController extends \BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $recipe_id
+     * @param  int  $user_id
      * @return Response
      */
-    public function show($recipe_id)
+    public function show($user_id)
     {
-        $recipe = Recipe::find($recipe_id);
-        $recipe->load('ingredients');
+        $recipes = Recipe::where('user_id' , '=', $user_id);
 
-        $steps = $recipe->description;
-        $steps = str_replace("<p>","", $steps);
-        $steps = explode("</p>", $steps);
-
-        array_pop($steps);
-
-        $recipe->description = $steps;
-
-        if (empty($recipe)) {
-            return Response::json('Recept niet gevonden.')->setCallback(Input::get('jsonp'));
+        if (empty($recipes)) {
+            return Response::json('Geen recepten gevonden.')->setCallback(Input::get('jsonp'));
         }
 
-        return Response::json($recipe)->setCallback(Input::get('jsonp'));
+        return Response::json($recipes)->setCallback(Input::get('jsonp'));
 
     }
 
@@ -107,6 +98,15 @@ class API_RecipeController extends \BaseController
                 'image' => $input['mainimage'],
                 'user_id' => $input['user_id'],
             ]);
+
+            if (Input::hasFile('mainimage')) {
+                $file            = Input::file('mainimage');
+                $root            = public_path();
+                $destinationPath = $root.'/images/recipes/';
+                $filename        = str_random(6) . '_' . $file->getClientOriginalName();
+                $uploadSuccess   = $file->move($destinationPath, $filename);
+                $recipe->image = $filename;
+            }
 
             $recipe->save();
 
