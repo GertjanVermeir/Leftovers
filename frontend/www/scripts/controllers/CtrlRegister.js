@@ -3,17 +3,7 @@
 
     var controllers = angular.module('Gj.Leftovers.Controllers');
 
-    controllers.controller('Gj.Leftovers.Controllers.CtrlRegister',['$scope', '$rootScope', '$routeParams', 'gntApp.services.FestValSrvc', 'countries', '$http', function($scope, $rootScope, $routeParams, FestValSrvc, countries, $http){
-
-        // Create Header
-        // ------------------
-        $rootScope.mulheader = {
-            type:'big',
-            title:'FESTIVALUTA',
-            desc:'OVERPOORT',
-            info:'5 JUNI \'14',
-            hour:'GENT'
-        };
+    controllers.controller('Gj.Leftovers.Controllers.CtrlRegister',['$scope', '$rootScope', '$http', function($scope, $rootScope, $http){
 
         $scope.formPage = 0;
 
@@ -64,9 +54,6 @@
             // passwords incorrect
             else{ $scope.formerror = "Passwords don't match"; }
         };
-
-        $scope.countries = countries;
-
 
     }]);
 })();

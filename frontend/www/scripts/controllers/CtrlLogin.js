@@ -3,7 +3,7 @@
 
     var controllers = angular.module('Gj.Leftovers.Controllers');
 
-    controllers.controller('Gj.Leftovers.Controllers.CtrlLogin',['$scope', '$rootScope', '$http','$location','localStorageService', '$routeParams', function($scope, $rootScope, $http, $location, localStorageService){
+    controllers.controller('Gj.Leftovers.Controllers.CtrlLogin',['$scope', '$rootScope', '$http','$location','localStorageService', function($scope, $rootScope, $http, $location, localStorageService){
 
 
         // LOGIN
@@ -15,6 +15,8 @@
 
             // check if form is valid
             if($scope.loginForm.$valid){
+
+//                console.log($httpProvider.defaults);
 
                 // post request to api
                 user = JSON.stringify(user);
@@ -36,6 +38,16 @@
             else{
                 $scope.error = "The form is invalid";
             }
+
+            // Lay-out fixes
+            $scope.init = function () {
+                var ch = $(document).height();
+                $('#login').css({'height':ch+'px'});
+            };
+
+            window.onresize = function(event) {
+                $scope.init();
+            };
         };
     }]);
 })();

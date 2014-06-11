@@ -1,11 +1,20 @@
+<p class="bar topfill"></p>
 
-    <h1 ng-show="formPage == 0" class="item-left">Register Now</h1>
+<div id="info" class="row info">
+    <div class="info-chef"><img src="img/chef.png"></div>
+    <div class="info-content">
+        <p>
+            Bon appétit! <br />Welkom bij Leftovers.
+        </p>
+        <p>
+            Na het invullen van volgende gegevens kan je meteen aan de slag.
+        </p>
+    </div>
+</div>
 
     <form name="registerForm" class="registerForm">
-
-        <fieldset ng-show="formPage == 0">
-            <label>Email</label>
-            <input name="email" type="email" ng-change="checkEmail()" ng-model="user.email" placeholder="Your e-mail" required />
+        <p class="bar-special">Gebruikergegevens</p>
+        <fieldset>
             <div ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
                 <small class="error"
                        ng-show="registerForm.email.$error.required">
@@ -16,10 +25,10 @@
                     Please fill in a valid email.
                 </small>
             </div>
+            <label class="bar yellow">Email <span ng-show="user.email"><img src="img/ok.png"></span></label>
+            <input name="email" type="email" ng-change="checkEmail()" ng-model="user.email" placeholder="Your e-mail" required />
 
-
-
-            <label>Password</label>
+            <label class="bar yellow">Password <span ng-show="user.password"><img src="img/ok.png"></span></label>
             <input name="password" type="password" ng-model="user.password" placeholder="Password"  required />
             <div ng-show="registerForm.password.$dirty && registerForm.password.$invalid">
                 <small class="error"
@@ -28,7 +37,7 @@
                 </small>
             </div>
 
-            <label>Password (repeat)</label>
+            <label class="bar yellow">Password (repeat) <span ng-show="user.password_repeated"><img src="img/ok.png"></span></label>
             <input name="password_repeated" type="password" ng-model="user.password_repeated" placeholder="Password (repeat)"  required />
             <div ng-show="registerForm.password_repeated.$dirty && registerForm.password_repeated.$invalid">
                 <small class="error"
@@ -38,23 +47,10 @@
             </div>
         </fieldset>
 
+        <p class="bar-special">Persoonsgegevens</p>
 
-        <fieldset ng-show="formPage == 0">
-            <label>Given Name</label>
-            <input name="givenname" pattern="[A-Za-z]{2,45}" type="text" ng-model="user.givenname" placeholder="Your Given Name" required />
-            <div ng-show="registerForm.givenname.$dirty && registerForm.givenname.$invalid">
-                <small class="error"
-                       ng-show="registerForm.givenname.$error.required">
-                    Your givenname is required.
-                </small>
-                <small class="error"
-                       ng-show="registerForm.givenname.$error.pattern">
-                    Your givenname must be between 2 and 45 characters long.
-                </small>
-            </div>
-
-
-            <label>Surname</label>
+        <fieldset>
+            <label class="bar yellow">Naam <span ng-show="user.surname"><img src="img/ok.png"></span></label>
             <input name="surname" type="text" pattern="[A-Za-z]{2,45}" ng-model="user.surname" placeholder="Your Surname" required />
             <div ng-show="registerForm.surname.$dirty && registerForm.surname.$invalid">
                 <small class="error"
@@ -67,7 +63,20 @@
                 </small>
             </div>
 
-            <label>Birthday</label>
+            <label class="bar yellow">Voornaam <span ng-show="user.givenname"><img src="img/ok.png"></span></label>
+            <input name="givenname" pattern="[A-Za-z]{2,45}" type="text" ng-model="user.givenname" placeholder="Your Given Name" required />
+            <div ng-show="registerForm.givenname.$dirty && registerForm.givenname.$invalid">
+                <small class="error"
+                       ng-show="registerForm.givenname.$error.required">
+                    Your givenname is required.
+                </small>
+                <small class="error"
+                       ng-show="registerForm.givenname.$error.pattern">
+                    Your givenname must be between 2 and 45 characters long.
+                </small>
+            </div>
+
+            <label class="bar yellow">Geboortedatum <span ng-show="user.birthday"><img src="img/ok.png"></span></label>
             <input name="birthday" type="date" ng-model="user.birthday" required placeholder="Your Birthday" />
             <div ng-show="registerForm.birthday.$dirty && registerForm.birthday.$invalid">
                 <small class="error"
@@ -77,82 +86,12 @@
             </div>
         </fieldset>
 
-
-        <fieldset ng-show="formPage == 0">
-            <label>Address (street + number)</label>
-            <input name="street" type="text" ng-model="user.street" placeholder="Your Street" required />
-            <div ng-show="registerForm.street.$dirty && registerForm.street.$invalid">
-                <small class="error"
-                       ng-show="registerForm.street.$error.required">
-                    Your street is required.
-                </small>
-                <small class="error"
-                       ng-show="registerForm.street.$error.pattern">
-                    Your street must be between 2 and 45 characters long.
-                </small>
-            </div>
-
-            <label>City</label>
-            <input name="city" type="text" ng-model="user.city" placeholder="Your City" required />
-            <div ng-show="registerForm.city.$dirty && registerForm.city.$invalid">
-                <small class="error"
-                       ng-show="registerForm.city.$error.required">
-                    Your city is required.
-                </small>
-            </div>
-
-            <label>Country</label>
-            <select name="country" ng-model="user.country_id" required="">
-                <option ng-repeat="country in countries" value="{{country.id}}" >{{ country.name }}</option>
-            </select>
-            <div ng-show="registerForm.country.$dirty && registerForm.country.$invalid">
-                <small class="error"
-                       ng-show="registerForm.country.$error.required">
-                    Your country is required.
-                </small>
-            </div>
-
-            <label>Postal Code</label>
-            <input name="postal" type="text" ng-model="user.postal" pattern="[0-9_-]{2,45}" placeholder="Your Postal Code" required />
-            <div ng-show="registerForm.postal.$dirty && registerForm.postal.$invalid">
-                <small class="error"
-                       ng-show="registerForm.postal.$error.required">
-                    Your postal code is required.
-                </small>
-            </div>
-        </fieldset>
-
-
-        <fieldset ng-show="formPage == 0">
-            <label>Social Number</label>
-            <input name="socialnumber" type="text" ng-model="user.socialnumber" pattern="[0-9_-]{2,45}" placeholder="Your Social Number"  required />
-            <div ng-show="registerForm.socialnumber.$dirty && registerForm.socialnumber.$invalid">
-                <small class="error"
-                       ng-show="registerForm.socialnumber.$error.required">
-                    Your social number is required.
-                </small>
-            </div>
-
-            <label>Bank Account Number</label>
-            <input name="bankaccount" type="text" ng-model="user.bankaccount" pattern="[0-9-]{2,45}" placeholder="Your Bank Account Number" required />
-            <div ng-show="registerForm.bankaccount.$dirty && registerForm.bankaccount.$invalid">
-                <small class="error"
-                       ng-show="registerForm.bankaccount.$error.required">
-                    Your bank account number is required.
-                </small>
-            </div>
-
-        </fieldset>
-        <div class="error" ng-show="formerror">
-            {{ formerror }}
-        </div>
-
-        <button ng-show="formPage == 0" ng-click="register(user)">REGISTER</button>
+        <div class="small-12 medium-12 columns button-green grey-border" ng-click="register(user)">Registreren</div>
 
     </form>
 
     <div ng-show="formPage == 1">
-        Congratulations and welcome to the Festivaluta community.
+        Congratulations and welcome to the LEftovers community.
         <a class="submit" href="#login"><li ng-class="{ active: isRouteActive('/login')}">Login</li></a>
     </div>
 

@@ -17,10 +17,21 @@
 
 
 <div class="form-error" data-ng-show="error">{{error}} </div>
-    <div class="small-12 medium-12 columns button-blue grey-border" ng-click="next()" ng-show="step == 1">Volgende</div>
-    <div class="small-6 medium-6 columns button-blue grey-border" ng-click="back()" ng-show="step > 1 && step < 5">Vorige</div>
-    <div class="small-6 medium-6 columns button-blue grey-border" ng-click="next()" ng-show="step > 1 && step < 4">Volgende</div>
-    <div class="small-6 medium-6 columns button-green grey-border" ng-click="validate(recipe)" ng-show="step == 4">Koken</div>
+
+<div class="row ">
+    <div class="small-12 medium-12 columns button-blue grey-border" ng-click="next()" ng-show="step == 1">
+        Volgende
+    </div>
+    <div class="small-6 medium-6 columns button-blue grey-border" ng-click="back()" ng-show="step > 1 && step < 5">
+        Vorige
+    </div>
+    <div class="small-6 medium-6 columns button-blue grey-border" ng-click="next()" ng-show="step > 1 && step < 4">
+        Volgende
+    </div>
+    <div class="small-6 medium-6 columns button-green grey-border" ng-click="validate(recipe)" ng-show="step == 4">
+        Koken
+    </div>
+</div>
 
  <div id="step1" ng-show="step == 1" ng-form="step1form">
     <label class="bar yellow">Naam <span ng-show="recipe.name"><img src="img/ok.png"></span></label>

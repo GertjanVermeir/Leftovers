@@ -14,18 +14,6 @@
 
             $scope.recipes = $rootScope.loggedUser.recipes;
 
-//            var apiUrl = $rootScope.linkAPI + "recipe?jsonp=JSON_CALLBACK";
-//
-//            $http.jsonp(apiUrl).
-//                success(function(data, status, headers, config){
-//                    $scope.recipes = data;
-//                    $scope.recipesInitialized = true;
-//
-//                }).
-//                error(function(data, status, headers, config){
-//                    alert('Recepten kunnen niet gevonden worden.');
-//                });
-
 
              $scope.recipeCount = function(course) {
                 var result = 0;

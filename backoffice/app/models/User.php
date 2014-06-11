@@ -78,11 +78,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function comments(){
-        return $this->belongsToMany('Recipe')->withPivot('description');
+        return $this->belongsToMany('Comment');
     }
 
     public function likes(){
-        return $this->belongsToMany('Recipe');
+        return $this->hasMany('Like');
     }
 
     public function ratings(){

@@ -1,46 +1,42 @@
 <?php
 
-class API_ArtistController extends \BaseController
+class API_CommentController extends \BaseController
 {
-
     /**
-     * Display a listing of the resource.
+     * Store a newly created resource in storage.
      *
      * @return Response
      */
-    public function index()
+    public function store()
     {
-        $artists = Artist::all();
+        $input = Input::json()->all();
 
-        foreach ($artists as $artist) {
-            $artist->load('Timeslot');
+        if(isset($input['action']) && $input['user_id'] && $input['recipe_id'] && $input['description'])
+        {
+            if($input['action'] == 'add')
+            {
+                $comment = new Comment();
+                $comment->user_id = $input['user_id'];
+                $comment->recipe_id = $input['recipe_id'];
+                $comment->description = $input['description'];
+                $comment->save();
+
+                return Response::json('Added')->setCallback(Input::get('jsonp'));
+            }
+            elseif($input['action'] == 'delete')
+            {
+                $comment = Comment::where('user_id' , '=', $input['user_id'])->where('recipe_id' , '=', $input['recipe_id'])->where('description' , '=', $input['description'])->first();
+
+                $comment->delete();
+
+                return Response::json('Deleted')->setCallback(Input::get('jsonp'));
+            }
+            else{
+                return Response::json('Action unknown')->setCallback(Input::get('jsonp'));
+            }
         }
-
-        return Response::json($artists)->setCallback(Input::get('jsonp'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $artist_id
-     * @return Response
-     */
-    public function show($artist_id)
-    {
-        $artist = Artist::find($artist_id);
-
-        if (empty($artist)) {
-            return Redirect::route('api.artist.index');
-        } else {
-
-            $artist->load('Timeslot');
-
-            return Response::json($artist)->setCallback(Input::get('jsonp'));
+        else{
+            return Response::json('Params missing')->setCallback(Input::get('jsonp'));
         }
-
-        /*$artist->load('Timeslot');
-
-        return Response::json($artist)->setCallback(Input::get('jsonp'));*/
     }
-
 } 

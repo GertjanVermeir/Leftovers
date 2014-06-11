@@ -30,7 +30,7 @@ class Recipe extends Eloquent
     }
 
     public function comments(){
-        return $this->belongsToMany('User')->withPivot('description');
+        return $this->belongsToMany('Comment');
     }
 
     public function likes(){

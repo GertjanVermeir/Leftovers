@@ -59,9 +59,6 @@ var app = angular
                 '/register', {
                     templateUrl:'views/Register.html',
                     controller:'Gj.Leftovers.Controllers.CtrlRegister',
-                    resolve: {
-                        countries: appCtrl.getDataCountries
-                    }
                 });
 
             $routeProvider.when(
@@ -123,10 +120,14 @@ var app = angular
         $rootScope.GlobalSearchTerm = null;
         $rootScope.returnToSearch = false;
 
+//        $rootScope.IP = "http://80.240.133.26/gertjanvermeir/backoffice/";
+        $rootScope.IP = "http://localhost/leftovers/backoffice/";
+//        $rootScope.IP = "http://127.0.0.1/leftovers/backoffice/";
+
         // Link to API
-        $rootScope.linkAPI = "http://192.168.0.240/leftovers/backoffice/public/api/";
-        $rootScope.backoffice = "http://192.168.0.240/leftovers/backoffice/";
-        $rootScope.linkIMAGE = "http://192.168.0.240/leftovers/backoffice/public/images/";
+        $rootScope.linkAPI = $rootScope.IP + "public/api/";
+        $rootScope.backoffice = $rootScope.IP;
+        $rootScope.linkIMAGE = $rootScope.IP + "public/images/";
 
         // Set rootScope 'Page Initialized' property to true after page has loaded
         $rootScope.pageInitialized = true;

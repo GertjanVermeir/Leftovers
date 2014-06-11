@@ -133,6 +133,10 @@ class UserController extends \BaseController
     public function show($id)
     {
         $user = User::find($id);
+        $user->load('likes');
+
+        var_dump($user->likes);
+        die;
         return View::make('admin.user.show')->with('user', $user);
     }
 

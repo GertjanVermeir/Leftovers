@@ -39,6 +39,18 @@ Route::group(['prefix' => 'api'], function () {
         ]
     ]);
 
+    Route::resource('like', 'API_LikeController', [
+        'except' => [
+
+        ]
+    ]);
+
+    Route::resource('comment', 'API_CommentController', [
+        'except' => [
+
+        ]
+    ]);
+
     Route::resource('recipes', 'API_RecipesController', [
         'except' => [
 
@@ -84,6 +96,8 @@ Route::group(['prefix' => 'api'], function () {
                     $user = Auth::user();
 
                     $user->load('recipes');
+                    $user->load('likes');
+
 
                     Auth::logout();
 

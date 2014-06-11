@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Festivaluta
+Leftovers
 @stop
 
 @section('additional_styles')
@@ -24,7 +24,7 @@ Festivaluta
 <div class="container">
     <div class="form-signin">
         <h1>We're sorry.</h1>
-        <p>It seems you aren't allowed to enter this section of the Festivaluta app.</p>
+        <p>It seems you aren't allowed to enter this section of the Leftovers app.</p>
         <p>Your current role is: {{ Auth::user()->role->name }}</p>
         <a href="{{ route('UberIndex') }}" class="btn btn-lg btn-primary btn-block">Go back to the admin center</a>
     </div>

@@ -1,6 +1,6 @@
 <div id="recipe" ng-if="recipeInitialized">
     <div class="row" style="height: 100%">
-        <div class="small-12 columns big-pic" style="background: url('{{linkIMAGE}}recipes/{{recipe.image}}') center no-repeat">
+        <div class="small-12 columns big-pic" style="background: url('http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}') center no-repeat">
         </div>
     </div>
 
@@ -32,9 +32,20 @@
 
 
     <div class="row rec-details nopad">
-        <p>Voor {{ recipe.persons }} personen.</p>
-        <p>Gang: {{ recipe.course }}</p>
-        <p>Soort: {{ recipe.type }}</p>
+        <div class="small-6 medium-6 columns nopad">
+            <p>{{ recipe.persons }} Personen</p>
+        </div>
+        <div class="small-6 medium-6 columns nopad">
+            <p>{{ recipe.course }}</p>
+        </div>
+    </div>
+    <div class="row rec-details nopad">
+        <div class="small-6 medium-6 columns nopad">
+            <p>{{ recipe.type }}</p>
+        </div>
+        <div class="small-6 medium-6 columns nopad">
+            <p>{{ recipe.level }}</p>
+        </div>
     </div>
 
     <div class="row rec-ingredients nopad">
@@ -65,16 +76,32 @@
 
 
         <div class="row">
-            <div class="small-6 medium-6 columns button-green">
-                <img src="img/icon-heart.png"> Yummy
+            <div class="small-6 medium-6 columns button-green" ng-hide="liked" ng-Click="likePost(recipe.id,'like')">
+                <i class="fa fa-heart-o"></i>
+            </div>
+            <div class="small-6 medium-6 columns button-green liked" ng-show="liked" ng-Click="likePost(recipe.id,'unlike')">
+                <i class="fa fa-heart"></i> Yummy
             </div>
             <div class="small-3 medium-3 columns button-blue">
-                <img src="img/icon-share.png">
+                <i class="fa fa-share"></i>
             </div>
             <div class="small-3 medium-3 columns button-red">
-                <img src="img/icon-comment.png">
+                <i class="fa fa-comment"></i>
             </div>
         </div>
+</div>
+
+<div id="comments">
+    <div id="message">
+        <p>Amai azo lekker</p>
+        <form id="commentForm" name="commentForm" class="nml-form">
+            <label class="bar yellow">Voeg commentaar toe</label>
+            <textarea ng-model="comment.description" placeholder="Schrijf je review." required > </textarea>
+            <div class="row">
+                <div class="small-12 medium-12 columns button-add grey-border" ng-click="addStep()"><i class="fa fa-plus"></i> Plaatsen</div>
+            </div>
+        </form>
+    </div>
 </div>
 
 {{init()}}

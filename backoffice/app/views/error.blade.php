@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Festivaluta
+LEftovers
 @stop
 
 @section('additional_styles')

@@ -31,6 +31,10 @@ input{
   color: #FFF;
 }
 
+.green{
+  background-color: @bluegreen;
+}
+
 .yellow{
   background-color: @mainyellow;
   border-bottom: 3px solid @darkyellow;
@@ -500,7 +504,11 @@ ul.off-canvas-list li a:hover {
   color: white;
 
   div:nth-of-type(2){
-    ont-size: 16px; font-size: 4vw;
+    font-size: 16px; font-size: 14vw;
+
+    span{
+      font-size: 16px; font-size: 4vw;
+    }
   }
 
   div:nth-of-type(3){
@@ -522,6 +530,26 @@ ul.off-canvas-list li a:hover {
   }
 }
 
+.rec-details{
+  text-align: center;
+  p{
+    width: 100%;
+    background-color: #FFF;
+    border-bottom: 1px solid @lightergrey;
+    margin: 0;
+    padding: 5px;
+  }
+  div:nth-of-type(1)
+  {
+    border-right: 1px solid @lightergrey;
+  }
+}
+
+.liked{
+  background-color: #FF9999 !important;
+  border-bottom: 12px solid #FF8080 !important;
+}
+
 .rec-nav{
   text-align: center;
   border-top: 1px solid #BBBDC0;
@@ -538,7 +566,7 @@ ul.off-canvas-list li a:hover {
     font-family: "ChunkFive Roman";
     padding: 0;
     margin: 0;
-    font-size: 25px;
+    font-size: 9vw;
     color: @lightgrey;
     display: block;
   }
@@ -890,13 +918,15 @@ p.delete:hover, p.delete:active, p.delete:active{
   margin: 0;
 }
 
-#view.login{
+#login{
   background-color: @mainred !important;
   text-align: center;
 
-  img.picture{
+  .picture{
     width: 100%;
     height: 40%;
+    overflow: hidden;
+    background: url('../img/login.png');
   }
   img.name{
     padding-top: 20px;
@@ -908,11 +938,9 @@ p.delete:hover, p.delete:active, p.delete:active{
   }
 
   #form-holder{
-    position: absolute;
-    bottom:0;
     background-color: @mainred;
-    height: 60%;
     width: 100%;
+    padding-bottom: 20px;
   }
 
   .form{
@@ -926,15 +954,6 @@ p.delete:hover, p.delete:active, p.delete:active{
     input{
       background-color: #F7F8F8;
     }
-  }
-
-  .error, .message{
-    background-color: @maingrey;
-    margin:0;
-    padding: 5px;
-    color: white;
-    font-size: 16px;
-    font-style: italic;
   }
 
   button{
@@ -953,5 +972,49 @@ p.delete:hover, p.delete:active, p.delete:active{
     color: @lightgrey;
     border: 1px solid #A7A9AB;
     display: inline-block;
+  }
+}
+
+small.error, .error, small.message{
+  background-color: @maingrey;
+  margin:0;
+  padding: 5px;
+  color: white;
+  font-size: 16px;
+  font-style: italic;
+}
+
+.registerForm{
+  fieldset{
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  input{
+    margin-bottom: 0;
+  }
+  label {
+    padding: 3px 10px;
+    font-size: 18px;
+  }
+  .bar-special{
+    background-color: @mainred;
+    height: auto;
+    color: #ffffff;
+    border-bottom: 3px solid @darkred;
+    padding: 3px 10px;
+    font-size: 21px;
+  }
+}
+
+#commentForm{
+  textarea{
+    resize: none;
+    height: 40px;
+    float: left;
+    width: 100%;
+    margin: 0;
+    border-left: 4px solid #ef4b39;
+    border-right: 0px solid #ef4b39;
   }
 }

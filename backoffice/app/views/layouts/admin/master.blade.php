@@ -8,7 +8,7 @@ $version = [
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Festivaluta[ADMIN]</title>
+    <title>Leftovers[ADMIN]</title>
 
     {{
     HTML::style("//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/{$version['twitter-bootstrap']}/css/bootstrap.min.css")

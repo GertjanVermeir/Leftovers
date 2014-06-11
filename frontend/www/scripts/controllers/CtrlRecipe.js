@@ -11,6 +11,7 @@
         {
 
             $rootScope.Title = "Gerechten";
+            $scope.liked = false;
             var id = $routeParams.recipeId;
 
             var apiUrl = $rootScope.linkAPI + "recipe/"+ id +"?jsonp=JSON_CALLBACK";
@@ -22,6 +23,9 @@
                 })
                 .error(function(data, status, headers, config){
                     alert('Recept kon niet gevonden worden.');
+                })
+                .then(function() {
+                    $scope.checkLike();
                 });
 
             // Lay-out fixes
@@ -43,5 +47,66 @@
             };
 
 
+
+            // Likes
+            var userLikes = $rootScope.loggedUser.likes;
+
+            $scope.checkLike = function (){
+                jQuery.each( userLikes, function( index, userlike ) {
+                    if(userlike.recipe_id == $scope.recipe.id )
+                    {
+                        $scope.liked = true;
+                    }
+                });
+            };
+
+            $scope.addLocalstorage = function (like){
+                $rootScope.loggedUser.likes.push(like);
+                var updatedUser = JSON.stringify($rootScope.loggedUser);
+                localStorageService.set('user', updatedUser);
+            };
+
+            $scope.removeLocalstorage = function (like){
+
+                var newLikes = userLikes;
+
+                jQuery.each( userLikes, function( index, userlike ) {
+                    if(userlike.recipe_id == like.recipe_id )
+                    {
+                        newLikes.splice(index, 1);
+                    }
+                });
+
+                $rootScope.loggedUser.likes = newLikes;
+                var updatedUser = JSON.stringify($rootScope.loggedUser);
+                localStorageService.set('user', updatedUser);
+            };
+
+            $scope.likePost = function(recipeID,action) {
+                var like = {};
+                like.user_id = $rootScope.loggedUser.id;
+                like.recipe_id = recipeID;
+                like.action = action;
+
+                var likeObj = like;
+
+                like = JSON.stringify(like);
+                var apiUrl = $rootScope.linkAPI +"like";
+
+                $http.post(apiUrl, like).success(function(result){
+                    if(result == '"Liked"')
+                    {
+                        $scope.liked = true;
+                        $scope.addLocalstorage(likeObj);
+
+                    }else if(result == '"Unliked"'){
+                        $scope.liked = false;
+                        $scope.removeLocalstorage(likeObj);
+                    }
+                    else{
+                        alert('Er is een fout opgetreden');
+                    }
+                });
+            };
         }])
 })()
