@@ -85,23 +85,44 @@
             <div class="small-3 medium-3 columns button-blue">
                 <i class="fa fa-share"></i>
             </div>
-            <div class="small-3 medium-3 columns button-red">
+            <div class="small-3 medium-3 columns button-red" ng-click="commentsGet()">
                 <i class="fa fa-comment"></i>
             </div>
         </div>
 </div>
 
-<div id="comments">
-    <div id="message">
-        <p>Amai azo lekker</p>
-        <form id="commentForm" name="commentForm" class="nml-form">
-            <label class="bar yellow">Voeg commentaar toe</label>
-            <textarea ng-model="comment.description" placeholder="Schrijf je review." required > </textarea>
-            <div class="row">
-                <div class="small-12 medium-12 columns button-add grey-border" ng-click="addStep()"><i class="fa fa-plus"></i> Plaatsen</div>
+<div id="comments" ng-show="commentsInitialized">
+
+    <div id="messages">
+        <div ng-repeat="comment in comments">
+            <div class="message row" ng-show="$index == number">
+                <p class="author"><strong>{{ comment.user.givenname }}</strong> {{ comment.user.surname }}</p>
+                <p class="date">{{ comment.created_at }}</p>
+                <p>{{ comment.description }}</p>
             </div>
-        </form>
+        </div>
     </div>
+    <div ng-hide="number == 0 || number == comments.length - 1 || comments.length == 1" class="small-6 medium-6 columns button-blue small-button grey-border" ng-click="number = number - 1">
+        Vorige
+    </div>
+    <div ng-hide="number == 0 || number == comments.length - 1 || comments.length == 1"  class="small-6 medium-6 columns button-blue small-button grey-border" ng-click="number = number + 1">
+        Volgende
+    </div>
+
+    <div ng-hide="number != 0 || comments.length == 1" class="small-12 medium-12 columns button-blue small-button grey-border" ng-click="number = number + 1">
+        Volgende
+    </div>
+    <div ng-hide="number != comments.length - 1 || comments.length == 1" class="small-12 medium-12 columns button-blue small-button grey-border" ng-click="number = number - 1">
+        Vorige
+    </div>
+    <div class="form-error" ng-show="comments.length == 0">Er zijn nog geen commentaren voor dit gerecht. Wees de eerste!</div>
+    <form id="commentForm" name="commentForm" class="nml-form">
+        <label class="bar yellow">Voeg commentaar toe</label>
+        <textarea ng-model="comment.description" placeholder="Schrijf je review." required > </textarea>
+        <div class="row">
+            <div class="small-12 medium-12 columns button-add grey-border" ng-click="commentPost(comment)"><i class="fa fa-plus"></i> Plaatsen</div>
+        </div>
+    </form>
 </div>
 
 {{init()}}

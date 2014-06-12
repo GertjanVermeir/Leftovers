@@ -111,7 +111,7 @@ class API_UserController extends \BaseController
 
         $user->delete();
 
-        return Response::json("gelukt!");
+        return Response::json("gelukt!")->setCallback(Input::get('jsonp'));;
     }
 
 }

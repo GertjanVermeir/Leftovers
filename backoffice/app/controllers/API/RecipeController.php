@@ -116,10 +116,10 @@ class API_RecipeController extends \BaseController
                 $recipe->ingredients()->attach($ingredient,array('amount' => $amount ));
             }
 
-            return Response::json('Je recept werd toegevoegd.');
+            return Response::json($recipe)->setCallback(Input::get('jsonp'));;
 
         } else {
-            return Response::json('Foutieve ingave.');
+            return Response::json('Foutieve ingave.')->setCallback(Input::get('jsonp'));;
         }
 
 

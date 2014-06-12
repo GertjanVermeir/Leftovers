@@ -101,10 +101,10 @@ Route::group(['prefix' => 'api'], function () {
 
                     Auth::logout();
 
-                    return Response::json($user);
+                    return Response::json($user)->setCallback(Input::get('jsonp'));;
                 }
 
-                return Response::json("mislukt");
+                return Response::json("mislukt")->setCallback(Input::get('jsonp'));;
             }
         ]);
 });

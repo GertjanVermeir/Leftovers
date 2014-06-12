@@ -73,13 +73,10 @@
                 var recipeURL = $rootScope.linkAPI + "recipe";
                 recipe = JSON.stringify(recipe);
 
-                console.log(recipe);
-
-
                 $http.post(recipeURL, recipe).success(function(result){
-                    if(result === '"Je recept werd toegevoegd."' )
+                    if(result != '"Foutieve ingave."' )
                     {
-                        $location.path('/recipes');
+                        $location.path('/recipe/' + result.id);
                     }else{
                         $scope.error = "Oeps. Je recept kon niet toegevoegd worde.";
                     }

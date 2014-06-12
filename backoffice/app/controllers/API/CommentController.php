@@ -21,12 +21,13 @@ class API_CommentController extends \BaseController
                 $comment->description = $input['description'];
                 $comment->save();
 
-                return Response::json('Added')->setCallback(Input::get('jsonp'));
+                $comment->load('User');
+
+                return Response::json($comment)->setCallback(Input::get('jsonp'));
             }
             elseif($input['action'] == 'delete')
             {
-                $comment = Comment::where('user_id' , '=', $input['user_id'])->where('recipe_id' , '=', $input['recipe_id'])->where('description' , '=', $input['description'])->first();
-
+                $comment = Comment::findOrFail($input['id']);
                 $comment->delete();
 
                 return Response::json('Deleted')->setCallback(Input::get('jsonp'));
@@ -38,5 +39,24 @@ class API_CommentController extends \BaseController
         else{
             return Response::json('Params missing')->setCallback(Input::get('jsonp'));
         }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $recipe_id
+     * @return Response
+     */
+    public function show($recipe_id)
+    {
+        $comments = Comment::where('recipe_id' , '=', $recipe_id)->get();
+        $comments->load('User');
+
+        if (empty($comments)) {
+            return Response::json('Geen comments.')->setCallback(Input::get('jsonp'));
+        }
+
+        return Response::json($comments)->setCallback(Input::get('jsonp'));
+
     }
 } 

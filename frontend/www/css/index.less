@@ -1010,11 +1010,51 @@ small.error, .error, small.message{
 #commentForm{
   textarea{
     resize: none;
-    height: 40px;
+    height: 70px;
     float: left;
     width: 100%;
     margin: 0;
     border-left: 4px solid #ef4b39;
     border-right: 0px solid #ef4b39;
   }
+}
+
+#messages{
+  .message{
+    background-color: #FFFBD5;
+  }
+  img{
+    width: 100%;
+    max-width: 150px;
+    display: inline-block;
+    border: 1px solid @maingrey;
+    background-color: blue;
+  }
+  p{
+    display: inline-block;
+    font-size: 14px;
+    width: 100%;
+    padding: 5px 15px;
+  }
+  p.author{
+    background-color: @maingrey;
+    color: white;
+    font-size: 18px;
+    margin: 0;
+  }
+  p.date{
+    background-color: #EEE;
+    padding: 3px 15px;
+    text-align: right;
+    color: #999;
+    margin: 0;
+    border-bottom: 1px solid #BBB;
+  }
+}
+
+.small-button{
+  padding-bottom: 0;
+  padding: 8px;
+  font-size: 15px;
+  font-family: "Calibri", "Roboto", sans-serif;
 }

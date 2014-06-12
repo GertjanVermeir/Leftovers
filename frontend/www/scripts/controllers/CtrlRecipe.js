@@ -12,6 +12,8 @@
 
             $rootScope.Title = "Gerechten";
             $scope.liked = false;
+            $scope.number = 0;
+
             var id = $routeParams.recipeId;
 
             var apiUrl = $rootScope.linkAPI + "recipe/"+ id +"?jsonp=JSON_CALLBACK";
@@ -46,7 +48,51 @@
                 $scope.init();
             };
 
+            // Comments
+            $scope.commentsGet = function(){
+                if($scope.commentsInitialized)
+                {
+                    $scope.commentsInitialized = false;
+                }
+                else{
+                    var apiUrl = $rootScope.linkAPI + "comment/"+ $scope.recipe.id +"?jsonp=JSON_CALLBACK";
 
+                    $http.jsonp(apiUrl).
+                        success(function(data, status, headers, config){
+                            $scope.comments = data.reverse();
+                            $scope.commentsInitialized = true;
+                        })
+                        .error(function(data, status, headers, config){
+                            alert('Commentaren kon niet gevonden worden.');
+                        })
+                }
+            };
+
+            $scope.commentPost = function(description) {
+                var comment = {};
+                comment.user_id = $rootScope.loggedUser.id;
+                comment.recipe_id = $scope.recipe.id;
+                comment.description = description.description;
+                comment.action = "add";
+
+                comment = JSON.stringify(comment);
+                var apiUrl = $rootScope.linkAPI +"comment";
+
+                $http.post(apiUrl, comment).success(function(result){
+                    if(result != '"Deleted"')
+                    {
+                        $scope.comments.unshift(result);
+                        $scope.number = 0;
+
+                    }else if(result == '"Deleted"'){
+                        alert('Deleted');
+                    }
+                    else{
+                        console.log(result);
+                        alert('Er is een fout opgetreden');
+                    }
+                });
+            };
 
             // Likes
             var userLikes = $rootScope.loggedUser.likes;
@@ -60,13 +106,13 @@
                 });
             };
 
-            $scope.addLocalstorage = function (like){
+            $scope.addCommentLocalstorage = function (like){
                 $rootScope.loggedUser.likes.push(like);
                 var updatedUser = JSON.stringify($rootScope.loggedUser);
                 localStorageService.set('user', updatedUser);
             };
 
-            $scope.removeLocalstorage = function (like){
+            $scope.removeCommentLocalstorage = function (like){
 
                 var newLikes = userLikes;
 
@@ -97,11 +143,11 @@
                     if(result == '"Liked"')
                     {
                         $scope.liked = true;
-                        $scope.addLocalstorage(likeObj);
+                        $scope.addCommentLocalstorage(likeObj);
 
                     }else if(result == '"Unliked"'){
                         $scope.liked = false;
-                        $scope.removeLocalstorage(likeObj);
+                        $scope.removeCommentLocalstorage(likeObj);
                     }
                     else{
                         alert('Er is een fout opgetreden');
