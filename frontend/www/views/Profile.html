@@ -1,11 +1,61 @@
 <p class="bar topfill"></p>
 
+<div id="profile" ng-if="profileInitialized">
 
-<div ng-if="profileInitialized">
-    Naam: {{ profile.surname }} <br />
-    Voornaam: {{ profile.givenname }}<br />
-    E-mailadres: {{ profile.email }}<br />
-    Geboortedatum: {{ profile.birthday }}<br />
-    Recepten: {{ profile.recipes.length }}<br />
-    Profielfoto: <img src="http://localhost/leftovers/backoffice/public/images/{{ profile.picture }}" ><br />
+    <div class="row profile-name nopad">
+        <div class="width-12 columns nopad">
+            <p><strong>{{ profile.givenname }}</strong> {{ profile.surname }}</p>
+        </div>
+    </div>
+
+    <div class="row profile-info nopad">
+        <div class="width-6 nopad">
+            <img ng-src="{{linkIMAGE}}users/{{ profile.picture }}" >
+        </div>
+        <div class="width-6 nopad">
+            <p>{{ profile.recipes.length }}<p>
+            <p class="text">Recepten</p>
+            <p ng-hide="profile.books.length">0</p>
+            <p ng-show="profile.books.length">{{ profile.books.length }}</p>
+            <p class="text">Kookboeken</p>
+        </div>
+    </div>
+
+    <div class="row" ng-hide="profile.id == loggedUser.id">
+        <div class="width-12 button-green" ng-hide="following" ng-Click="followPost(profile.id,'follow')">
+            <i class="fa fa-heart-o"></i> Volgen
+        </div>
+        <div class="width-12 button-green liked" ng-show="following" ng-Click="followPost(profile.id,'unfollow')">
+            <i class="fa fa-heart"></i> Volgend
+        </div>
+    </div>
+
+    <div class="row" ng-show="profile.id == loggedUser.id">
+        <a href="#/user/edit">
+            <div class="width-12 button-green">
+            <i class="fa fa-pencil-square-o"></i> Aanpassen
+            </div>
+        </a>
+    </div>
+
+    <h2 class="bar yellow">Laatste Recepten</h2>
+
+    <div class="profile-recipes">
+        <div ng-repeat="recipe in profile.recipes">
+            <div ng-show="$index <= number" class="width-6 nopad profile-recipe" >
+                <a href="#/recipe/{{recipe.id}}">
+                    <div class="back" style="background: url('{{linkIMAGE}}recipes/{{ recipe.image }}') no-repeat center center"></div>
+                    <p>
+                       {{ recipe.name }}
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="form-error" ng-show="profile.recipes.length == 0">{{ profile.givenname }} heeft nog geen recepten gemaakt!</div>
+    <div class="row">
+        <div class="width-12 button-add grey-border" ng-hide="profile.recipes.length == 0 || number >= profile.recipes.length - 1" ng-click="number = number + 4 "><i class="fa fa-plus"></i> Meer Recepten</div>
+    </div>
+
+
 </div>

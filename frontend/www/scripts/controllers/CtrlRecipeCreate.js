@@ -11,8 +11,8 @@
         {
             $scope.ingredients = [];
 
-                ingredients.forEach(function(ingredient) {
-                    $scope.ingredients.push(ingredient.name);
+            ingredients.forEach(function(ingredient) {
+                $scope.ingredients.push(ingredient.name);
             });
 
             $rootScope.Title = "Nieuw Recept";
@@ -26,7 +26,6 @@
             };
 
             $scope.uploadImage = function($files,recipe){
-
                 for (var i = 0; i < $files.length; i++) {
                     var file = $files[i];
                     var image = '';
@@ -76,9 +75,14 @@
                 $http.post(recipeURL, recipe).success(function(result){
                     if(result != '"Foutieve ingave."' )
                     {
+
+                        $rootScope.loggedUser.recipes.push(result);
+                        var updatedUser = JSON.stringify($rootScope.loggedUser);
+                        localStorageService.set('user', updatedUser);
+
                         $location.path('/recipe/' + result.id);
                     }else{
-                        $scope.error = "Oeps. Je recept kon niet toegevoegd worde.";
+                        $scope.error = "Oeps. Je recept kon niet toegevoegd worden.";
                     }
 
                 });

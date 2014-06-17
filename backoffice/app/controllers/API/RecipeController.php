@@ -23,8 +23,34 @@ class API_RecipeController extends \BaseController
      */
     public function show($recipe_id)
     {
+        $ratingTotal = 0;
+
         $recipe = Recipe::find($recipe_id);
-        $recipe->load('ingredients');
+
+        if (empty($recipe)) {
+            return Response::json('Recept niet gevonden.')->setCallback(Input::get('jsonp'));
+        }
+
+        $recipe->load('Ingredients');
+        $recipe->load('Ratings');
+        $recipe->load('Likes');
+
+        $recipe->likeTotal = count($recipe->likes);
+
+        foreach($recipe->ratings as $rating)
+        {
+            $ratingTotal +=  $rating->rating;
+        }
+
+        if(count($recipe->ratings) > 0)
+        {
+            $recipe->ratingTotal = $ratingTotal/count($recipe->ratings);
+            $recipe->ratingTotal = floor($recipe->ratingTotal * 2) / 2;
+        }
+        else{
+            $recipe->ratingTotal = 0;
+        }
+
 
         $steps = $recipe->description;
         $steps = str_replace("<p>","", $steps);
@@ -34,9 +60,9 @@ class API_RecipeController extends \BaseController
 
         $recipe->description = $steps;
 
-        if (empty($recipe)) {
-            return Response::json('Recept niet gevonden.')->setCallback(Input::get('jsonp'));
-        }
+
+        $recipe->load('User');
+
 
         return Response::json($recipe)->setCallback(Input::get('jsonp'));
 
@@ -112,17 +138,56 @@ class API_RecipeController extends \BaseController
 
             foreach($ingredients as $key => $ingredient)
             {
+                $id = Ingredient::where('name' , '=', $ingredient)->first();
+
                 $amount = $amounts[$key];
-                $recipe->ingredients()->attach($ingredient,array('amount' => $amount ));
+                $recipe->ingredients()->attach($id,array('amount' => $amount ));
             }
 
-            return Response::json($recipe)->setCallback(Input::get('jsonp'));;
+            return Response::json($recipe)->setCallback(Input::get('jsonp'));
 
         } else {
-            return Response::json('Foutieve ingave.')->setCallback(Input::get('jsonp'));;
+            return Response::json('Foutieve ingave.')->setCallback(Input::get('jsonp'));
         }
 
 
+    }
+
+
+    public function leftovers(){
+        $input = Input::json()->all();
+
+        $ingArray = [];
+        $foundRecipes = array();
+
+        $recipes = Recipe::all();
+        $recipes->load('ingredients');
+
+        foreach ($recipes as $recipe) {
+
+            $ingArray = [];
+
+            foreach ($recipe->ingredients as $ingredient)
+            {
+                array_push($ingArray,$ingredient->name);
+            }
+
+            $result = array_intersect($ingArray, $input);
+
+            if(count($result) == count($input))
+            {
+                $recipe->match = 'perfect';
+                array_unshift($foundRecipes,$recipe->toArray());
+            }
+            else if(count($result) >= (count($input)/2 )){
+                $recipe->match = count($result);
+                $foundRecipes[] = $recipe->toArray();
+            }
+        }
+
+        array_slice($foundRecipes, 0, 9);
+
+        return Response::json($foundRecipes)->setCallback(Input::get('jsonp'));
     }
 
 } 

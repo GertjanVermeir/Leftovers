@@ -10,9 +10,11 @@
         function($scope, $rootScope, $http, localStorageService, $location,$routeParams)
         {
 
-            $rootScope.Title = "Gerechten";
+            $rootScope.Title = "Recept";
             $scope.liked = false;
             $scope.number = 0;
+            $scope.rating = 0;
+            $scope.ratingInitialized = false;
 
             var id = $routeParams.recipeId;
 
@@ -28,6 +30,10 @@
                 })
                 .then(function() {
                     $scope.checkLike();
+                    if($scope.recipe.user_id != $rootScope.loggedUser.id)
+                    {
+                        $scope.getRating();
+                    }
                 });
 
             // Lay-out fixes
@@ -50,6 +56,8 @@
 
             // Comments
             $scope.commentsGet = function(){
+
+                $scope.ratingInitialized = false;
                 if($scope.commentsInitialized)
                 {
                     $scope.commentsInitialized = false;
@@ -106,13 +114,13 @@
                 });
             };
 
-            $scope.addCommentLocalstorage = function (like){
+            $scope.addLikeLocalstorage = function (like){
                 $rootScope.loggedUser.likes.push(like);
                 var updatedUser = JSON.stringify($rootScope.loggedUser);
                 localStorageService.set('user', updatedUser);
             };
 
-            $scope.removeCommentLocalstorage = function (like){
+            $scope.removeLikeLocalstorage = function (like){
 
                 var newLikes = userLikes;
 
@@ -130,6 +138,7 @@
 
             $scope.likePost = function(recipeID,action) {
                 var like = {};
+
                 like.user_id = $rootScope.loggedUser.id;
                 like.recipe_id = recipeID;
                 like.action = action;
@@ -140,19 +149,76 @@
                 var apiUrl = $rootScope.linkAPI +"like";
 
                 $http.post(apiUrl, like).success(function(result){
-                    if(result == '"Liked"')
+                    if(result == '"Unliked"'){
+                        $scope.liked = false;
+                        $scope.removeLikeLocalstorage(likeObj);
+                    }
+                    else if(result)
                     {
                         $scope.liked = true;
-                        $scope.addCommentLocalstorage(likeObj);
+                        $scope.addLikeLocalstorage(result);
 
-                    }else if(result == '"Unliked"'){
-                        $scope.liked = false;
-                        $scope.removeCommentLocalstorage(likeObj);
                     }
                     else{
                         alert('Er is een fout opgetreden');
                     }
                 });
             };
+
+            $scope.edit = function(id){
+                $rootScope.editRecipe = $scope.recipe;
+                $location.path('/recipe/edit');
+            };
+
+            $scope.getRating = function(){
+
+                var rating = {};
+
+                rating.user_id = $rootScope.loggedUser.id;
+                rating.recipe_id = $scope.recipe.id;
+                rating.rating = "get";
+
+                rating = JSON.stringify(rating);
+                var apiUrl = $rootScope.linkAPI +"rating";
+
+                $http.post(apiUrl, rating).success(function(result){
+                    if(jQuery.isEmptyObject(result)){
+                        $scope.rating = 0;
+                    }
+                    else
+                    {
+                        $scope.rating = result.rating;
+                    }
+                });
+            };
+
+            $scope.showRating = function(){
+                $scope.ratingInitialized = !$scope.ratingInitialized;
+                $scope.commentsInitialized = false;
+            };
+
+            $scope.setRating = function(int){
+                $scope.rating = int;
+
+                var rating = {};
+
+                rating.user_id = $rootScope.loggedUser.id;
+                rating.recipe_id = $scope.recipe.id;
+                rating.rating = int;
+
+                rating = JSON.stringify(rating);
+                var apiUrl = $rootScope.linkAPI +"rating";
+
+                $http.post(apiUrl, rating).success(function(result){
+                    if(result == "Deleted"){
+                        // do nothing
+                    }
+                    else if(!result)
+                    {
+                        alert('Er is een fout opgetreden');
+                    }
+                });
+            };
+
         }])
 })()

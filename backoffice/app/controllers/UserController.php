@@ -99,7 +99,7 @@ class UserController extends \BaseController
             if (Input::hasFile('picture')) {
                 $file            = Input::file('picture');
                 $root            = public_path();
-                $destinationPath = $root.'/images/';
+                $destinationPath = $root.'/images/users/';
                 $filename        = str_random(6) . '_' . $file->getClientOriginalName();
                 $uploadSuccess   = $file->move($destinationPath, $filename);
 
@@ -263,5 +263,20 @@ class UserController extends \BaseController
         } else {
             return Redirect::route('user.login')->withErrors($validator)->withInput();
         }
+    }
+
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
     }
 }

@@ -39,7 +39,10 @@ var app = angular
             $routeProvider.when(
                 '/home', {
                     templateUrl:'views/Home.html',
-                    controller:'Gj.Leftovers.Controllers.CtrlHome'
+                    controller:'Gj.Leftovers.Controllers.CtrlHome',
+                    resolve: {
+                        ingredients: appCtrl.getDataIngredients
+                    }
                 });
 
             $routeProvider.when(
@@ -82,10 +85,25 @@ var app = angular
                 });
 
             $routeProvider.when(
+                '/recipe/edit', {
+                    templateUrl:'views/RecipeEdit.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlRecipeEdit',
+                    resolve: {
+                        ingredients: appCtrl.getDataIngredients
+                    }
+                });
+
+            $routeProvider.when(
                 '/recipe/:recipeId', {
                 templateUrl:'views/Recipe.html',
                 controller:'Gj.Leftovers.Controllers.CtrlRecipe'
             });
+
+            $routeProvider.when(
+                '/profile/:userId', {
+                    templateUrl:'views/Profile.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlProfileId'
+                });
 
 
             $routeProvider.when(
@@ -95,9 +113,28 @@ var app = angular
                 });
 
             $routeProvider.when(
-                '/quick-search', {
-                    templateUrl:'views/QuickSearch.html',
-                    controller:'Gj.Leftovers.Controllers.CtrlQuickSearch'
+                '/user/edit', {
+                    templateUrl:'views/ProfileEdit.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlProfileEdit'
+                });
+
+            $routeProvider.when(
+                '/books', {
+                    templateUrl:'views/Books.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlBooks'
+                });
+
+            $routeProvider.when(
+                '/following', {
+                    templateUrl:'views/Following.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlFollowing'
+                });
+
+
+            $routeProvider.when(
+                '/searches', {
+                    templateUrl:'views/Searches.html',
+                    controller:'Gj.Leftovers.Controllers.CtrlSearches'
                 });
             $routeProvider.when('/app', {
                 templateUrl:'views/home.html',
@@ -112,38 +149,32 @@ var app = angular
 /*************************************************************************
     RUN THE APPLICATION
  **************************************************************************/
-.run(['$rootScope', '$timeout', '$location', 'localStorageService', '$route',
+.run(['$rootScope', '$timeout', '$location', 'localStorageService', '$route', '$anchorScroll',
     function($rootScope, $timeout, $location, localStorageService, $route){
 
-        // Set header title (in fixed menu bar) to 'MediatheekApp'.
         $rootScope.Title = "Leftovers";
         $rootScope.GlobalSearchTerm = null;
         $rootScope.returnToSearch = false;
 
 //        $rootScope.IP = "http://80.240.133.26/gertjanvermeir/backoffice/";
-        $rootScope.IP = "http://localhost/leftovers/backoffice/";
+
 //        $rootScope.IP = "http://127.0.0.1/leftovers/backoffice/";
+//        $rootScope.IP = "http://78.22.162.6/leftovers/backoffice/";
+
+
+//        $rootScope.IP = "http://leftovers.gertjanvermeir.be/";
+        $rootScope.IP = "http://localhost/leftovers/backoffice/public/";
+        $rootScope.linkIMAGE = $rootScope.IP + "images/";
 
         // Link to API
-        $rootScope.linkAPI = $rootScope.IP + "public/api/";
+//        $rootScope.linkAPI = $rootScope.IP + "public/api/";
+        $rootScope.linkAPI = $rootScope.IP + "api/";
         $rootScope.backoffice = $rootScope.IP;
-        $rootScope.linkIMAGE = $rootScope.IP + "public/images/";
+//
+
 
         // Set rootScope 'Page Initialized' property to true after page has loaded
         $rootScope.pageInitialized = true;
-
-        /** Hammertime JS gestures */
-        // Gesture for tab-bar (fixed bar at the top)
-        var fixedTabBar = Hammer(document.getElementById("tab-bar"), {prevent_default:true});
-
-        // When fixed tab bar is swiped right, toggle menu
-        fixedTabBar.on("swiperight", function(ev) {
-            ev.stopPropagation();
-            $("#tab-bar").closest('.off-canvas-wrap').toggleClass('move-right');
-        });
-
-        /** App post-initialization routine */
-        $rootScope.appInitialized = false;
 
         $rootScope.$on('$routeChangeStart', function(event, next, current){
             if(!$rootScope.appInitialized){
@@ -153,6 +184,21 @@ var app = angular
             }
         });
 
+        $("#tab-bar").swipe( {
+            //Generic swipe handler for all directions
+            swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+                if(direction == 'right')
+                {
+                    $("#tab-bar").closest('.off-canvas-wrap').toggleClass('move-right');
+                }
+                //$(this).text("You swiped " + direction );
+            },
+            //Default is 75px, set to 0 for demo so any distance triggers swipe
+            threshold:0
+        });
+
+        // Recipes variables
+        $rootScope.watchLikes = false;
 
 
         // Global arrays

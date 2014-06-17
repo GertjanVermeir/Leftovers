@@ -30,18 +30,25 @@ class API_UserController extends \BaseController
             'givenname' => 'required|min:2|max:45',
             'surname' => 'required|min:2|max:45',
             'birthday' => 'required',
+            'picture' => 'required',
         ];
 
         $validator = Validator::make($input, $rules);
 
         if ($validator->passes()) {
             $user = new User($input);
-            $user->role = 2;
+            $user->role = 'User';
+            $user->chef = 0;
+            $user->blacklist = false;
 
             $user->password = Input::json('password'); // Hash wordt in het model geregeld via het 'creating' event!
             $user->save();
 
-            return Response::json('gelukt!'); // Zie: $ php artisan routes
+            $user->load('recipes');
+            $user->load('likes');
+            $user->load('following');
+
+            return Response::json($user); // Zie: $ php artisan routes
 
         } else {
             return Response::json('niet gelukt! :(');
@@ -57,6 +64,11 @@ class API_UserController extends \BaseController
     public function show($id)
     {
         $user = User::find($id);
+
+        $user->role = '';
+
+        $user->load('Recipes');
+        $user->load('followers');
 
         if (empty($user)) {
             return Redirect::route('api.user.index');
@@ -112,6 +124,32 @@ class API_UserController extends \BaseController
         $user->delete();
 
         return Response::json("gelukt!")->setCallback(Input::get('jsonp'));;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return Response
+     */
+    public function email()
+    {
+        $input = Input::json()->all();
+
+        $searcheduser = "false";
+
+        foreach (User::all() as $user) {
+            if ($user->email == $input['email']) {
+                $searcheduser = $user;
+                break;
+            }
+        }
+
+        if($searcheduser == "false"){
+            return Response::json("Not Found");
+        }
+        else{
+            return Response::json($searcheduser);
+        }
     }
 
 }

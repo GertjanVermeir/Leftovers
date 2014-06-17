@@ -121,7 +121,9 @@ class API_RecipesController extends \BaseController
         } else {
             return Response::json('Foutieve ingave.')->setCallback(Input::get('jsonp'));;
         }
+    }
 
+    public function recipeByName($name){
 
     }
 

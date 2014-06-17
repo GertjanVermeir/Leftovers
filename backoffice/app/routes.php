@@ -33,11 +33,40 @@ Route::group(['prefix' => 'api'], function () {
         ]
     ]);
 
+    Route::post('leftovers', [
+        'as' => 'recipe.leftovers',
+        'uses' => 'API_RecipeController@leftovers'
+    ]);
+
     Route::resource('image', 'API_ImageController', [
         'except' => [
 
         ]
     ]);
+
+    Route::post('image/user', [
+        'as' => 'image.user',
+        'uses' => 'API_ImageController@userUpload'
+    ]);
+
+    Route::post('edit/user', [
+        'as' => 'api.edit.user',
+        'uses' => 'API_EditController@updateUser'
+    ]);
+
+    Route::post('edit/recipe', [
+        'as' => 'api.edit.recipe',
+        'uses' => 'API_EditController@updateRecipe'
+    ]);
+
+    Route::get('delete/recipe/{id}',
+        ['as' => 'api.delete.recipe', function ($id) {
+
+            $recipe = Recipe::findOrFail($id);
+            $recipe->delete();
+
+            return Response::json('Deleted')->setCallback(Input::get('jsonp'));
+        }]);
 
     Route::resource('like', 'API_LikeController', [
         'except' => [
@@ -51,11 +80,34 @@ Route::group(['prefix' => 'api'], function () {
         ]
     ]);
 
+    Route::resource('follow', 'API_FollowController', [
+        'except' => [
+
+        ]
+    ]);
+
+    Route::resource('rating', 'API_RatingController', [
+        'except' => [
+
+        ]
+    ]);
+
     Route::resource('recipes', 'API_RecipesController', [
         'except' => [
 
         ]
     ]);
+
+    Route::get('recipesbyname/{name}',
+        ['as' => 'api.recipes.name', function ($name) {
+            $recipes = [];
+            foreach (Recipe::all() as $recipe) {
+                if (strtoupper($recipe->name) == strtoupper($name)) {
+                    array_push($recipes,$recipe->ToArray());
+                }
+            }
+            return Response::json($recipes)->setCallback(Input::get('jsonp'));
+        }]);
 
     Route::resource('ingredient', 'API_IngredientController', [
         'except' => [
@@ -65,9 +117,13 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::resource('user', 'API_UserController', [
         'except' => [
-            'create',
-            'edit',
+
         ]
+    ]);
+
+    Route::post('user/email', [
+        'as' => 'user.email',
+        'uses' => 'API_UserController@email'
     ]);
 
     Route::get('checkuser/{email}',
@@ -79,7 +135,7 @@ Route::group(['prefix' => 'api'], function () {
                     return Response::json($exists);
                 }
             }
-            return Response::json($exists);
+            return Response::json($exists)->setCallback(Input::get('jsonp'));
         }]);
 
     Route::post('login',
@@ -95,16 +151,20 @@ Route::group(['prefix' => 'api'], function () {
                 if (Auth::attempt($creds)) {
                     $user = Auth::user();
 
+                    $user->role = '';
+
                     $user->load('recipes');
                     $user->load('likes');
+                    $user->likes->load('recipe');
+                    $user->load('following');
 
 
                     Auth::logout();
 
-                    return Response::json($user)->setCallback(Input::get('jsonp'));;
+                    return Response::json($user)->setCallback(Input::get('jsonp'));
                 }
 
-                return Response::json("mislukt")->setCallback(Input::get('jsonp'));;
+                return Response::json("mislukt")->setCallback(Input::get('jsonp'));
             }
         ]);
 });

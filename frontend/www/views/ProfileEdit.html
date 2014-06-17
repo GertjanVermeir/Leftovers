@@ -1,0 +1,54 @@
+<p class="bar topfill"></p>
+
+<form name="editForm" class="registerForm nml-form" >
+
+    <p class="bar-special">Persoonsgegevens</p>
+
+    <fieldset>
+        <div ng-show="editForm.surname.$dirty && editForm.surname.$invalid">
+            <small class="error"
+                   ng-show="editForm.surname.$error.required">
+                Geef je naam op.
+            </small>
+        </div>
+        <label class="bar yellow">Naam <span ng-show="user.surname"><img src="img/ok.png"></span></label>
+        <input name="surname" type="text" ng-model="user.surname" placeholder="Doe" required />
+
+
+        <div ng-show="editForm.givenname.$dirty && editForm.givenname.$invalid">
+            <small class="error"
+                   ng-show="editForm.givenname.$error.required">
+                Geef je voornaam op.
+            </small>
+        </div>
+        <label class="bar yellow">Voornaam <span ng-show="user.givenname"><img src="img/ok.png"></span></label>
+        <input name="givenname" type="text"  ng-model="user.givenname" placeholder="John" required />
+
+
+        <div ng-show="editForm.birthday.$dirty && editForm.birthday.$invalid">
+            <small class="error"
+                   ng-show="editForm.birthday.$error.required">
+                Je geboortedatum is verplicht
+            </small>
+        </div>
+        <label class="bar yellow">Geboortedatum <span ng-show="user.birthday"><img src="img/ok.png"></span></label>
+        <input name="birthday" type="date" ng-model="user.birthday" required placeholder="01/01/1993" />
+
+    </fieldset>
+    <div ng-show="formerror">
+        <small class="error">
+            {{ formerror }}
+        </small>
+    </div>
+
+    <label class="bar yellow">Profielfoto <span ng-show="fileName"><img src="img/ok.png"></span></label>
+    <small ng-hide="fileName" class="error">
+       Enkel wanneer je een nieuwe foto wenst!
+    </small>
+    <div class="form-error" ng-show="fileName">Gekozen afbeelding: {{ fileName }} </div>
+    <input id="imageUpload" type="file" name="image" ng-file-select="onFileSelect($files)" >
+
+    <img ng-show="loading" class="loader" src="img/loader-white.gif" >
+    <button class="small-12 medium-12 columns button-green nomarg" ng-click="validate(user)"><i class="fa fa-pencil-square-o"></i> Aanpassen</button>
+
+</form>

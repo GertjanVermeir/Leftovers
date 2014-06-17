@@ -1,0 +1,18 @@
+<p class="bar topfill"></p>
+
+<img  ng-show="loaderNav" class="loader" src="img/loader-white.gif" >
+<h2 class="bar yellow">Zoeken naar</h2>
+<input type="text" id="quickSearch" ui-keypress="{13:'searchrecipes(searchTerm)'}" ng-model="latestSearch" type="text" placeholder="Snel zoeken">
+<div class="button-green small-button-border grey-border" ng-show="searchTerm.length>=2" ng-click="searchrecipes(searchTerm)"><i class="fa fa-check"></i> Zoeken</div>
+
+<div class="button-green small-button-border grey-border"  ng-click="searchrecipes(latestSearch,false)">Zoeken</div>
+
+
+<div ng-repeat="recipe in navSearches" class="follow-list-item">
+    <a href="#/recipe/{{recipe.id}}">
+        <div class="small-12 columns">
+            <img ng-src="{{linkIMAGE}}recipes/{{ recipe.image }}" ><span>{{ recipe.name }}</span>
+        </div>
+    </a>
+</div>
+

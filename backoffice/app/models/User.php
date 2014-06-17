@@ -35,6 +35,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'picture'
     ];
 
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
+
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -86,10 +101,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function ratings(){
-        return $this->belongsToMany('Recipe')->withPivot('rating');
+        return $this->hasMany('Rating')->withPivot('rating');
     }
 
-    public function followers(){
-        return $this->belongsToMany('User');
+    public function followers() {
+        return $this->belongsToMany('User', 'follow_user', 'follow_id', 'user_id');
     }
+
+    public function following() {
+        return $this->belongsToMany('User', 'follow_user', 'user_id', 'follow_id');
+    }
+
+
 }

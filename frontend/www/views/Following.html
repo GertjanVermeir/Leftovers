@@ -1,0 +1,50 @@
+<p class="bar topfill"></p>
+
+<input type="text" id="quickSearchRecipes" ng-model="searchProfile.givenname" type="text" placeholder="Zoeken op voornaam van gebruiker">
+
+<div id="search" ng-show="filtered.length == 0">
+
+    <div id="info" class="row info">
+        <div class="info-chef"><img src="img/chef.png"></div>
+        <div class="info-content">
+            <p>
+                Ik kan geen gebruikers vinden.
+            </p>
+            <p>
+                Je kan ook een gebruiker zoeken via het e-mailadres.
+            </p>
+        </div>
+    </div>
+    <form name="searchForm" class="nml-form">
+        <div ng-show="searchForm.email.$dirty && registerForm.email.$invalid">
+            <small class="error"
+                   ng-show="searchForm.email.$error.required">
+                Je e-mailadres is verplicht.
+            </small>
+            <small class="error"
+                   ng-show="searchForm.email.$error.email">
+                Geef een geldig e-mailadres op.
+            </small>
+        </div>
+        <img ng-show="loading" class="loader" src="img/loader-red.gif" >
+        <label class="bar yellow">E-mailadres</label>
+        <div class="form-error" data-ng-show="checkerror" style="clear: both;">{{checkerror}} </div>
+        <div class="form-error" data-ng-show="emailerror" style="clear: both;">Geef een geldig e-mailadres op.</div>
+        <input type="email" class="nomarg noborder" required ng-model="email" type="text" placeholder="Zoeken op basis van e-mailadres.">
+        <div class="row">
+            <div class="button-blue" ng-click="searchUser(email)">Zoek Gebruiker</div></a>
+        </div>
+    </form>
+</div>
+
+
+
+<div ng-repeat="follow in filtered  = ( following | filter:searchProfile:strict)" class="follow-list-item">
+    <!--{{ follow.givenname }} {{ follow.surname }}-->
+    <a href="#/profile/{{follow.id}}">
+        <div class="row">
+            <img ng-src="{{linkIMAGE}}users/{{ follow.picture }}" ><span>{{ follow.user.givenname }} {{ follow.surname }}</span>
+        </div>
+    </a>
+</div>
+

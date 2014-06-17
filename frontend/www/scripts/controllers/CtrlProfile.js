@@ -12,17 +12,10 @@
 
             $rootScope.Title = "Mijn Profiel";
 
-            var apiUrl = $rootScope.linkAPI + "user/2?jsonp=JSON_CALLBACK";
+            $scope.profile = $rootScope.loggedUser;
+            $scope.profileInitialized = true;
 
-            $http.jsonp(apiUrl).
-                success(function(data, status, headers, config){
-                    $scope.profile = data;
-                    console.log(data);
-                    $scope.profileInitialized = true;
-                }).
-                error(function(data, status, headers, config){
-                    alert('Gebruiker kon niet gevonden worden.');
-                });
+            $scope.number = 3;
 
         }])
 })()

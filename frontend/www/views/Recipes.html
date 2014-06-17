@@ -6,6 +6,11 @@
 
 <input type="text" id="quickSearchRecipes" ng-model="searchRecipe.name" type="text" placeholder="Zoeken in mijn gerechten">
 
+<div class="row">
+    <div class="button-green small-button-border grey-border width-6" ng-class="{active: watchLikes == false}" ng-click="switchFav()">Mijn Recepten</div>
+    <div class="button-green small-button-border grey-border width-6" ng-class="{active: watchLikes == true} " ng-click="switchFav()" >Favorieten</div>
+</div>
+
 <div id="search" ng-show="searchRecipe.name.length">
 
     <div id="info" class="row info" ng-show="filtered.length == 0">
@@ -26,13 +31,13 @@
     <div class="row recipe-list-recipe" ng-repeat="recipe in filtered  = ( recipes | filter:searchRecipe:strict)">
             <a href="#/recipe/{{recipe.id}}">
                 <div class="small-12 columns searches">
-                    <img src="{{linkIMAGE}}recipes/{{ recipe.image }}" >{{ recipe.name }}
+                    <img ng-src="{{linkIMAGE}}recipes/{{ recipe.image }}" >{{ recipe.name }}
                 </div>
             </a>
     </div>
 </div>
 
-<div ng-repeat="course in courses" ng-if="!searchRecipe.name.length">
+<div ng-repeat="course in courses" class="row" ng-if="!searchRecipe.name.length">
 
     <h2 class="bar yellow recipe-list-course" ng-Click="showRecipes(course)">{{ course }}</h2><p>{{ recipeCount(course)}}</p>
 
@@ -41,7 +46,7 @@
 
                 <a href="#/recipe/{{recipe.id}}">
                     <div class="small-12 columns">
-                    <img src="{{linkIMAGE}}recipes/{{ recipe.image }}" ><span>{{ recipe.name }}</span>
+                    <img ng-src="{{linkIMAGE}}recipes/{{ recipe.image }}" ><span>{{ recipe.name }}</span>
                     </div>
                 </a>
 

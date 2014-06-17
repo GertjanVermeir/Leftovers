@@ -1,4 +1,5 @@
 @extends('layouts.admin.master')
+@extends('layouts.admin.master')
 
 @section('page-header')
 <h1>
@@ -10,7 +11,7 @@
 @stop
 
 @section('content')
-<img src="{{ '../../images/'. $user->picture }}" style="width: 200px;float: left" >
+<img src="{{ '../../images/users/'. $user->picture }}" style="width: 200px;float: left" >
 <table class="table">
     <tbody>
     <!--    NAME-->

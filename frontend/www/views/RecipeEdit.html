@@ -1,0 +1,99 @@
+<p class="bar topfill"></p>
+
+<form name="createForm" class="nml-form">
+
+    <div class="form-error" data-ng-show="delete">Zeker dat u dit recept wilt verwijderen?</div>
+
+    <div class="width-12 button-delete " ng-click="deleteShow()" ng-show="step == 1">
+        <i class="fa fa-trash-o"></i> Verwijderen
+    </div>
+    <div class="width-6 button-delete " ng-click="del()" ng-show="step == 1 && delete">
+        Ja
+    </div>
+    <div class="width-6 button-add " ng-click="deleteShow()" ng-show="step == 1 && delete">
+        Neen
+    </div>
+
+    <div class="row ">
+        <div class="form-error" data-ng-show="error">{{error}} </div>
+        <a href="#/recipe/{{recipe.id}}"><div class="width-6 button-green" ng-show="step == 1">
+            Terug
+        </div></a>
+        <div class="width-6 button-blue " ng-click="next()" ng-show="step == 1">
+            Volgende
+        </div>
+        <div class="width-6 button-blue " ng-click="back()" ng-show="step > 1 && step < 5">
+            Vorige
+        </div>
+        <div class="width-6 button-blue " ng-click="next()" ng-show="step > 1 && step < 4">
+            Volgende
+        </div>
+        <div class="width-6 button-green " ng-click="validate(recipe)" ng-show="step == 4">
+            Koken
+        </div>
+    </div>
+    <img ng-show="loading" class="loader" src="img/loader-white.gif" >
+
+    <div id="step1" ng-show="step == 1" ng-form="step1form">
+        <label class="bar yellow">Naam <span ng-show="recipe.name"><img src="img/ok.png"></span></label>
+        <input type="text" required name="name" ng-model="recipe.name" placeholder="Naam recept">
+
+        <label class="bar yellow">Aantal personen <span ng-show="recipe.persons"><img src="img/ok.png"></span></label>
+        <input type="text" name="persons" min="1" required ng-model="recipe.persons" ng-value="recipe.persons">
+
+        <label class="bar yellow">Afbeelding <span ng-show="fileName"><img src="img/ok.png"></span></label>
+        <small ng-hide="fileName" class="error">
+        Enkel wanneer je een nieuwe foto wenst!
+        </small>
+        <div class="form-error" ng-show="fileName">Gekozen afbeelding: {{ fileName }} </div>
+
+        <input id="imageUpload" type="file" name="image" ng-file-select="onFileSelect($files)" >
+    </div>
+
+    <div id="step2" ng-show="step == 2" ng-form="step2form">
+        <label class="bar yellow">Tijd <span ng-show="recipe.time"><img src="img/ok.png"></span></label>
+        <select required name="time" ng-model="recipe.time">
+            <option value=""  class="option-empty">-- Bereidingstijd --</option>
+            <option ng-repeat="time in times" ng-selected="recipe.time" value="{{ time }}">{{ time }} minuten</option>
+        </select>
+
+
+        <label class="bar yellow">Moeilijkheidsgraad <span ng-show="recipe.level"><img src="img/ok.png"></span></label>
+        <select required name="level" ng-model="recipe.level">
+            <option value="" class="option-empty">-- Moeilijkheidsgraad --</option>
+            <option ng-repeat="level in levels" ng-selected="recipe.level" value="{{ level }}">{{ level }}</option>
+        </select>
+
+
+        <label class="bar yellow">Gang <span ng-show="recipe.course"><img src="img/ok.png"></span></label>
+        <select required name="course" ng-model="recipe.course">
+            <option value="" class="option-empty">-- Gang --</option>
+            <option ng-repeat="course in courses" ng-selected="recipe.course" value="{{ course }}">{{ course }}</option>
+        </select>
+
+
+        <label class="bar yellow">Soort <span ng-show="recipe.type"><img src="img/ok.png"></span></label>
+        <select required name="type" ng-model="recipe.type">
+            <option value="" class="option-empty">-- Soort --</option>
+            <option ng-repeat="type in types" ng-selected="recipe.type" value="{{ type }}">{{ type }}</option>
+        </select>
+
+    </div>
+
+    <div id="step3" ng-show="step == 3" ng-form="step3form">
+        <label class="bar yellow">Ingrediënten</label>
+        <div id="ingredient-holder">
+
+        </div>
+        <div class="width-12 button-add grey-border" ng-click="addIngredient()"><i class="fa fa-plus"></i> Meer ingrediënten toevoegen</div>
+    </div>
+
+    <div id="step4" ng-show="step == 4" ng-form="step4form">
+        <label class="bar yellow">Stappenplan</label>
+        <div id="form-steps" >
+
+        </div >
+        <div  class="width-12 columns button-add grey-border" ng-click="addStep()"><i class="fa fa-plus"></i> Meer stappen toevoegen</div>
+    </div>
+
+</form>

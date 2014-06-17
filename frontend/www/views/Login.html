@@ -10,13 +10,13 @@
         <div ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
             <small class="error"
                    ng-show="loginForm.email.$error.required">
-                Your email is required.
+                Vul je e-mailadres in.
             </small>
         </div>
         <div ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
             <small class="error"
                    ng-show="loginForm.password.$error.required">
-                Your password is required.
+                Vul je paswoord in.
             </small>
         </div>
         <img class="name" src="img/login-name.png">
@@ -26,7 +26,7 @@
 
                 <input type="email" name="email" ng-model="user.email" placeholder="johndoe@hotmail.com" required />
 
-                <input type="password" name="password" ng-model="user.password" placeholder="johndoe@hotmail.com" required />
+                <input type="password" name="password" ng-model="user.password" placeholder="*****" required />
 
                 <button class="submit" href="" ng-click="login(user)">Aanmelden</button>
 
@@ -34,10 +34,15 @@
                 <a class="register-link" href="#home">overslaan</a>
             </form>
         </div>
+
+        <img ng-show="loading" class="loader-login" src="img/loader-red.gif" >
     </div>
     <p class="bar-special"></p>
-    <div class="picture">
+
+    <div ng-if="loaded" class="picture">
+        {{init()}}
+
     </div>
 </div>
 
-{{init()}}
+

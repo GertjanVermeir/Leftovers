@@ -1,6 +1,6 @@
 <div id="recipe" ng-if="recipeInitialized">
     <div class="row" style="height: 100%">
-        <div class="small-12 columns big-pic" style="background: url('http://localhost/leftovers/backoffice/public/images/recipes/{{ recipe.image }}') center no-repeat">
+        <div class="small-12 columns big-pic" ng-style="{'background':'url({{linkIMAGE}}recipes/{{ recipe.image }}) center no-repeat'}">
         </div>
     </div>
 
@@ -14,16 +14,25 @@
 
     <div class="row rec-info">
         <div class="small-3 medium-3 columns nopad">
-            <img src="img/author.png" >
+            <a href="#profile/{{recipe.user.id}}">
+                <img ng-show="loggedUser.id == recipe.user.id" ng-src="{{linkIMAGE}}users/{{ loggedUser.picture }}" >
+                <img ng-hide="loggedUser.id == recipe.user.id"   ng-src="{{linkIMAGE}}users/{{ recipe.user.picture }}" >
+            </a>
         </div>
         <div class="small-3 medium-3 columns">
-            {{ recipe.time }}<span></span>
+            {{ recipe.time }}"
         </div>
         <div class="small-3 medium-3 columns">
-            {{ recipe.level }}
+            <p>{{ recipe.likeTotal }}</p><i class="fa fa-heart"></i>
         </div>
         <div class="small-3 medium-3 columns">
-            <img src="img/rating.png" >
+            <i ng-if="recipe.ratingTotal == 0" class="fa fa-star-o star-special star-white"></i>
+
+            <i ng-if="recipe.ratingTotal >= 1 && recipe.ratingTotal < 5" class="fa fa-star"></i>
+            <i ng-if="recipe.ratingTotal >= 2 && recipe.ratingTotal < 5" class="fa fa-star"></i><br ng-if="recipe.ratingTotal >= 2 && recipe.ratingTotal < 5" />
+            <i ng-if="recipe.ratingTotal >= 3 && recipe.ratingTotal < 5" class="fa fa-star"></i>
+            <i ng-if="recipe.ratingTotal >= 4 && recipe.ratingTotal < 5"  class="fa fa-star"></i>
+            <i ng-if="recipe.ratingTotal == 5" class="fa fa-star star-special"></i>
         </div>
     </div>
 
@@ -74,55 +83,89 @@
             </p>
         </div>
 
+    <div id="rating" ng-if="ratingInitialized">
+        <div class="form-error" ng-hide="rating" >Geef je rating voor dit gerecht.</div>
+        <div class="row">
+            <div class="small-2 medium-2 columns" ng-hide="loggedUser.id == recipe.user.id" ng-Click="setRating(0)">
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="small-2 medium-2 columns" ng-hide="loggedUser.id == recipe.user.id" ng-Click="setRating(1)">
+                <i ng-if="rating == 0" class="fa fa-star-o"></i>
+                <i ng-if="rating >= 1" class="fa fa-star"></i>
+            </div>
+            <div class="small-2 medium-2 columns" ng-hide="loggedUser.id == recipe.user.id" ng-Click="setRating(2)">
+                <i ng-if="rating <= 1" class="fa fa-star-o"></i>
+                <i ng-if="rating >= 2" class="fa fa-star"></i>
+            </div>
+            <div class="small-2 medium-2 columns" ng-hide="loggedUser.id == recipe.user.id" ng-Click="setRating(3)">
+                <i ng-if="rating <= 2" class="fa fa-star-o"></i>
+                <i ng-if="rating >= 3" class="fa fa-star"></i>
+            </div>
+            <div class="small-2 medium-2 columns" ng-hide="loggedUser.id == recipe.user.id" ng-Click="setRating(4)">
+                <i ng-if="rating <= 3" class="fa fa-star-o"></i>
+                <i ng-if="rating >= 4" class="fa fa-star"></i>
+            </div>
+            <div class="small-2 medium-2 columns" ng-hide="loggedUser.id == recipe.user.id" ng-Click="setRating(5)">
+                <i ng-if="rating <= 4" class="fa fa-star-o"></i>
+                <i ng-if="rating == 5" class="fa fa-star"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="comments" ng-show="commentsInitialized">
+        <div id="messages">
+            <div ng-repeat="comment in comments">
+                <div class="message row" ng-show="$index == number">
+                    <p class="author"><strong>{{ comment.user.givenname }}</strong> {{ comment.user.surname }}</p>
+                    <p class="date">{{ comment.created_at }}</p>
+                    <p>{{ comment.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="number == 0 || number == comments.length - 1 || comments.length == 1" class="small-6 medium-6 columns button-blue small-button grey-border" ng-click="number = number - 1">
+            Vorige
+        </div>
+        <div ng-hide="number == 0 || number == comments.length - 1 || comments.length == 1"  class="small-6 medium-6 columns button-blue small-button grey-border" ng-click="number = number + 1">
+            Volgende
+        </div>
+
+        <div ng-hide="number != 0 || comments.length == 1 || comments.length == 0" class="small-12 medium-12 columns button-blue small-button grey-border" ng-click="number = number + 1">
+            Volgende
+        </div>
+        <div ng-hide="number != comments.length - 1 || comments.length == 1" class="small-12 medium-12 columns button-blue small-button grey-border" ng-click="number = number - 1">
+            Vorige
+        </div>
+        <div class="form-error" ng-show="comments.length == 0">Er zijn nog geen commentaren voor dit gerecht. Wees de eerste!</div>
+        <form id="commentForm" name="commentForm" class="nml-form">
+            <label class="bar yellow">Voeg commentaar toe</label>
+            <textarea ng-model="comment.description" placeholder="Schrijf je review." required > </textarea>
+            <div class="row">
+                <div class="small-12 medium-12 columns button-add grey-border" ng-click="commentPost(comment)"><i class="fa fa-plus"></i> Plaatsen</div>
+            </div>
+        </form>
+    </div>
 
         <div class="row">
-            <div class="small-6 medium-6 columns button-green" ng-hide="liked" ng-Click="likePost(recipe.id,'like')">
+            <div  class="small-6 medium-6 columns button-green" ng-hide="liked || loggedUser.id == recipe.user.id" ng-Click="likePost(recipe.id,'like')">
                 <i class="fa fa-heart-o"></i>
             </div>
-            <div class="small-6 medium-6 columns button-green liked" ng-show="liked" ng-Click="likePost(recipe.id,'unlike')">
+            <div class="small-6 medium-6 columns button-green liked" ng-show="liked"  ng-Click="likePost(recipe.id,'unlike')">
                 <i class="fa fa-heart"></i> Yummy
             </div>
-            <div class="small-3 medium-3 columns button-blue">
-                <i class="fa fa-share"></i>
+            <div class="small-3 medium-3 columns button-blue" ng-hide="loggedUser.id == recipe.user.id" ng-Click="showRating()">
+                <i ng-if="rating > 0" class="fa fa-star" style="color: #fff38b"></i>
+                <i ng-if="rating == 0" class="fa fa-star-o"></i>
             </div>
-            <div class="small-3 medium-3 columns button-red" ng-click="commentsGet()">
+            <div ng-show="recipe.user.id == loggedUser.id" class="small-9 medium-9 columns button-green" ng-click="edit()">
+                <i class="fa fa-edit"></i>
+            </div>
+            <div  class="small-3 medium-3 columns button-red" ng-click="commentsGet()">
                 <i class="fa fa-comment"></i>
             </div>
         </div>
 </div>
 
-<div id="comments" ng-show="commentsInitialized">
 
-    <div id="messages">
-        <div ng-repeat="comment in comments">
-            <div class="message row" ng-show="$index == number">
-                <p class="author"><strong>{{ comment.user.givenname }}</strong> {{ comment.user.surname }}</p>
-                <p class="date">{{ comment.created_at }}</p>
-                <p>{{ comment.description }}</p>
-            </div>
-        </div>
-    </div>
-    <div ng-hide="number == 0 || number == comments.length - 1 || comments.length == 1" class="small-6 medium-6 columns button-blue small-button grey-border" ng-click="number = number - 1">
-        Vorige
-    </div>
-    <div ng-hide="number == 0 || number == comments.length - 1 || comments.length == 1"  class="small-6 medium-6 columns button-blue small-button grey-border" ng-click="number = number + 1">
-        Volgende
-    </div>
 
-    <div ng-hide="number != 0 || comments.length == 1" class="small-12 medium-12 columns button-blue small-button grey-border" ng-click="number = number + 1">
-        Volgende
-    </div>
-    <div ng-hide="number != comments.length - 1 || comments.length == 1" class="small-12 medium-12 columns button-blue small-button grey-border" ng-click="number = number - 1">
-        Vorige
-    </div>
-    <div class="form-error" ng-show="comments.length == 0">Er zijn nog geen commentaren voor dit gerecht. Wees de eerste!</div>
-    <form id="commentForm" name="commentForm" class="nml-form">
-        <label class="bar yellow">Voeg commentaar toe</label>
-        <textarea ng-model="comment.description" placeholder="Schrijf je review." required > </textarea>
-        <div class="row">
-            <div class="small-12 medium-12 columns button-add grey-border" ng-click="commentPost(comment)"><i class="fa fa-plus"></i> Plaatsen</div>
-        </div>
-    </form>
-</div>
 
 {{init()}}

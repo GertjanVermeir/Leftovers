@@ -19,11 +19,24 @@ class UserTableSeeder extends Seeder
             'password' => 'admin',
             'chef' => 0,
             'role' => 'Administrator',
-            'picture' => '',
+            'picture' => 'DKbbPS_oogkleppen.jpg',
+            'blacklist' => 'false'
+        ];
+
+        $user = [
+            'email' => 'gertjan@gmail.be',
+            'givenname' => 'Gertjan',
+            'surname' => 'Vermeir',
+            'birthday' => '1992-01-20',
+            'password' => 'admin',
+            'chef' => 1,
+            'role' => 'User',
+            'picture' => 'DKbbPS_oogkleppen.jpg',
             'blacklist' => 'false'
         ];
 
         User::create($administrator);
+        User::create($user);
 
     }
 } 

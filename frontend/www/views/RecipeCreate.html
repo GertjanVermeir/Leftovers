@@ -19,18 +19,18 @@
 <div class="form-error" data-ng-show="error">{{error}} </div>
 
 <div class="row ">
-    <div class="small-12 medium-12 columns button-blue grey-border" ng-click="next()" ng-show="step == 1">
+    <div class="width-12 button-blue normarg " ng-click="next()" ng-show="step == 1">
         Volgende
     </div>
-    <div class="small-6 medium-6 columns button-blue grey-border" ng-click="back()" ng-show="step > 1 && step < 5">
-        Vorige
-    </div>
-    <div class="small-6 medium-6 columns button-blue grey-border" ng-click="next()" ng-show="step > 1 && step < 4">
-        Volgende
-    </div>
-    <div class="small-6 medium-6 columns button-green grey-border" ng-click="validate(recipe)" ng-show="step == 4">
-        Koken
-    </div>
+        <div class="width-6 button-blue " ng-click="back()" ng-show="step > 1 && step < 5">
+            Vorige
+        </div>
+        <div class="width-6 button-blue" ng-click="next()" ng-show="step > 1 && step < 4">
+            Volgende
+        </div>
+        <div class="width-6 button-green" ng-click="validate(recipe)" ng-show="step == 4">
+            Koken
+        </div>
 </div>
 
  <div id="step1" ng-show="step == 1" ng-form="step1form">
@@ -38,9 +38,9 @@
     <input type="text" required name="name" ng-model="recipe.name" placeholder="Naam recept">
 
      <label class="bar yellow">Aantal personen <span ng-show="recipe.persons"><img src="img/ok.png"></span></label>
-     <input type="number" name="persons" required ng-model="recipe.persons" placeholder="0">
+     <input type="number" name="persons" min="1" required ng-model="recipe.persons" placeholder="0">
 
-     <label class="bar yellow">Image <span ng-show="fileName"><img src="img/ok.png"></span></label>
+     <label class="bar yellow">Afbeelding <span ng-show="fileName"><img src="img/ok.png"></span></label>
      <div class="form-error" ng-show="fileName">Gekozen afbeelding: {{ fileName }} </div>
 
      <input id="imageUpload" type="file" name="image" ng-file-select="onFileSelect($files)" >
@@ -99,7 +99,7 @@
             <input required type="number" placeholder="0" class="amount"><p class="grey unit"></p><p class="delete"><i class="fa fa-trash-o"></i></p>
         </div>
     </div>
-    <div class="small-12 medium-12 columns button-add grey-border" ng-click="addIngredient()"><i class="fa fa-plus"></i> Meer ingrediënten toevoegen</div>
+    <div class="width-12 button-add grey-border" ng-click="addIngredient()"><i class="fa fa-plus"></i> Meer ingrediënten toevoegen</div>
 </div>
 
 <div id="step4" ng-show="step == 4" ng-form="step4form">
@@ -114,7 +114,7 @@
             <textarea placeholder="Volgende stap" required > </textarea>
             <p class="deleteStep"><i class="fa fa-trash-o"></i></p>
     </div>
-    <div class="small-12 medium-12 columns button-add grey-border" ng-click="addStep()"><i class="fa fa-plus"></i> Meer stappen toevoegen</div>
+    <div class="width-12 button-add grey-border" ng-click="addStep()"><i class="fa fa-plus"></i> Meer stappen toevoegen</div>
 </div>
 
 </form>

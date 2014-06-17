@@ -12,86 +12,88 @@
     </div>
 </div>
 
-    <form name="registerForm" class="registerForm">
+    <form name="registerForm" class="registerForm nml-form" >
+
         <p class="bar-special">Gebruikergegevens</p>
         <fieldset>
             <div ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
                 <small class="error"
                        ng-show="registerForm.email.$error.required">
-                    Your email is required.
+                    Je e-mailadres is verplicht.
                 </small>
                 <small class="error"
                        ng-show="registerForm.email.$error.email">
-                    Please fill in a valid email.
+                    Geef een geldig e-mailadres op.
                 </small>
             </div>
-            <label class="bar yellow">Email <span ng-show="user.email"><img src="img/ok.png"></span></label>
-            <input name="email" type="email" ng-change="checkEmail()" ng-model="user.email" placeholder="Your e-mail" required />
+            <label class="bar yellow">E-mailadres <span ng-show="user.email"><img src="img/ok.png"></span></label>
+            <input name="email" type="email" ng-change="checkEmail()" ng-model="user.email" placeholder="jogndoe@gamilcom" required />
 
-            <label class="bar yellow">Password <span ng-show="user.password"><img src="img/ok.png"></span></label>
-            <input name="password" type="password" ng-model="user.password" placeholder="Password"  required />
             <div ng-show="registerForm.password.$dirty && registerForm.password.$invalid">
                 <small class="error"
                        ng-show="registerForm.password.$error.required">
-                    Your password is required.
+                    Je paswoord is verplicht
                 </small>
             </div>
+            <label class="bar yellow">Paswoord <span ng-show="user.password"><img src="img/ok.png"></span></label>
+            <input name="password" type="password" ng-model="user.password" placeholder="Paswoord"  required />
 
-            <label class="bar yellow">Password (repeat) <span ng-show="user.password_repeated"><img src="img/ok.png"></span></label>
-            <input name="password_repeated" type="password" ng-model="user.password_repeated" placeholder="Password (repeat)"  required />
+
             <div ng-show="registerForm.password_repeated.$dirty && registerForm.password_repeated.$invalid">
                 <small class="error"
                        ng-show="registerForm.password_repeated.$error.required">
-                    Your password is required.
+                    Je paswoord (herhaling) is verplicht.
                 </small>
             </div>
+            <label class="bar yellow">Paswoord (herhaling) <span ng-show="user.password_repeated"><img src="img/ok.png"></span></label>
+            <input name="password_repeated" type="password" ng-model="user.password_repeated" placeholder="Paswoord (herhaling)"  required />
+
         </fieldset>
 
         <p class="bar-special">Persoonsgegevens</p>
 
         <fieldset>
-            <label class="bar yellow">Naam <span ng-show="user.surname"><img src="img/ok.png"></span></label>
-            <input name="surname" type="text" pattern="[A-Za-z]{2,45}" ng-model="user.surname" placeholder="Your Surname" required />
             <div ng-show="registerForm.surname.$dirty && registerForm.surname.$invalid">
                 <small class="error"
                        ng-show="registerForm.surname.$error.required">
-                    Your surname is required.
-                </small>
-                <small class="error"
-                       ng-show="registerForm.surname.$error.regex">
-                    Your surname must be between 2 and 45 characters long.
+                    Geef je naam op.
                 </small>
             </div>
+            <label class="bar yellow">Naam <span ng-show="user.surname"><img src="img/ok.png"></span></label>
+            <input name="surname" type="text" ng-model="user.surname" placeholder="Doe" required />
 
-            <label class="bar yellow">Voornaam <span ng-show="user.givenname"><img src="img/ok.png"></span></label>
-            <input name="givenname" pattern="[A-Za-z]{2,45}" type="text" ng-model="user.givenname" placeholder="Your Given Name" required />
+
             <div ng-show="registerForm.givenname.$dirty && registerForm.givenname.$invalid">
                 <small class="error"
                        ng-show="registerForm.givenname.$error.required">
-                    Your givenname is required.
-                </small>
-                <small class="error"
-                       ng-show="registerForm.givenname.$error.pattern">
-                    Your givenname must be between 2 and 45 characters long.
+                    Geef je voornaam op.
                 </small>
             </div>
+            <label class="bar yellow">Voornaam <span ng-show="user.givenname"><img src="img/ok.png"></span></label>
+            <input name="givenname" type="text"  ng-model="user.givenname" placeholder="John" required />
 
-            <label class="bar yellow">Geboortedatum <span ng-show="user.birthday"><img src="img/ok.png"></span></label>
-            <input name="birthday" type="date" ng-model="user.birthday" required placeholder="Your Birthday" />
+
             <div ng-show="registerForm.birthday.$dirty && registerForm.birthday.$invalid">
                 <small class="error"
                        ng-show="registerForm.birthday.$error.required">
-                    Your birthday is required.
+                    Je geboortedatum is verplicht
                 </small>
             </div>
-        </fieldset>
+            <label class="bar yellow">Geboortedatum <span ng-show="user.birthday"><img src="img/ok.png"></span></label>
+            <input name="birthday" type="date" ng-model="user.birthday" required placeholder="01/01/1993" />
 
-        <div class="small-12 medium-12 columns button-green grey-border" ng-click="register(user)">Registreren</div>
+        </fieldset>
+        <div ng-show="formerror">
+            <small class="error">
+                {{ formerror }}
+            </small>
+        </div>
+
+        <label class="bar yellow">Profielfoto <span ng-show="fileName"><img src="img/ok.png"></span></label>
+        <input id="imageUpload" type="file" name="image" ng-file-select="onFileSelect($files)" >
+
+        <div class="form-error" ng-show="fileName">Gekozen afbeelding: {{ fileName }} </div>
+        <button class="small-12 medium-12 columns button-green nomarg" ng-click="validate(user)">Registreren</button>
 
     </form>
-
-    <div ng-show="formPage == 1">
-        Congratulations and welcome to the LEftovers community.
-        <a class="submit" href="#login"><li ng-class="{ active: isRouteActive('/login')}">Login</li></a>
-    </div>
 

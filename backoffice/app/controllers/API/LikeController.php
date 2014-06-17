@@ -21,7 +21,9 @@ class API_LikeController extends \BaseController
                 $like->timestamps = '';
                 $like->save();
 
-                return Response::json('Liked')->setCallback(Input::get('jsonp'));
+                $like->load('Recipe');
+
+                return Response::json($like)->setCallback(Input::get('jsonp'));
             }
             elseif($input['action'] == 'unlike')
             {

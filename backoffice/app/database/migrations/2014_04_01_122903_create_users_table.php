@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration {
             $table->string('role');
             $table->boolean('chef');
             $table->boolean('blacklist');
+            $table->string('remember_token',100);
             $table->timestamps();
             $table->softDeletes();
         });

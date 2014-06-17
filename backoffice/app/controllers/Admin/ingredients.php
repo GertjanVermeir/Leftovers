@@ -140,5 +140,139 @@ $ingredients = [
         "calories"  => "12",
         "unit"  => "g",
         "type"  => "vegetables"
+    ],
+    [
+        "name" => "Kalfsvlees",
+        "description"  => "rosévlees, stevige structuur",
+        "calories"  => "104",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Rollade",
+        "description"  => "gekruide plakken vlees om elkaar gedraaid",
+        "calories"  => "125",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Kotelet",
+        "description"  => "Vlees van schouder of rug",
+        "calories"  => "197",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Schnitzel",
+        "description"  => "Dun gesneden gepaneerd vlees",
+        "calories"  => "122",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Lamsbout",
+        "description"  => "Mooie stuk vlees van lam met been",
+        "calories"  => "173",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Biefstuk",
+        "description"  => "mals, mager spiervlees van rund of kalf",
+        "calories"  => "127",
+        "unit"  => "g",
+        "type"  => "meat"
+
+    ],[
+        "name" => "Chateaubriand",
+        "description"  => "runderbiefstuk",
+        "calories"  => "127",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Entrecote",
+        "description"  => "Gesneden stuk dunne lende, klein vetrandje",
+        "calories"  => "173",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Ossenhaas",
+        "description"  => "deel ruglende van rund, spier",
+        "calories"  => "126",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Rosbief",
+        "description"  => "groot stuk rundvlees, mager spierdeel van rund",
+        "calories"  => "168",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Gehakt",
+        "description"  => "gemalen vlees",
+        "calories"  => "236",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Tournedos",
+        "description"  => "haasbiefstuk",
+        "calories"  => "183",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Schapenvlees",
+        "description"  => "vlees van schaap, vettig, olieachtige smaak",
+        "calories"  => "217",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Ham",
+        "description"  => "dikke deel van achterbout van varken",
+        "calories"  => "202",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Spek",
+        "description"  => "vettig varkensvlees, rug of buik",
+        "calories"  => "882",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Hamburger",
+        "description"  => "gebakken gehakt",
+        "calories"  => "220",
+        "unit"  => "st",
+        "type"  => "meat"
+    ],[
+        "name" => "Varkenshaasje",
+        "description"  => "meest malse spier van varken",
+        "calories"  => "119",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Konijn",
+        "description"  => "konijn",
+        "calories"  => "174",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Cordon Bleu",
+        "description"  => "gepaneerd vlees gevuld met ham en kaas",
+        "calories"  => "211",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Worst",
+        "description"  => "gemalen vlees met kruiden",
+        "calories"  => "374",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Saté",
+        "description"  => "vlees op dunne houten spies",
+        "calories"  => "200",
+        "unit"  => "g",
+        "type"  => "meat"
+    ],[
+        "name" => "Stoofvlees",
+        "description"  => "suddervlees, lang op vuur",
+        "calories"  => "120",
+        "unit"  => "g",
+        "type"  => "meat"
     ]
 ];

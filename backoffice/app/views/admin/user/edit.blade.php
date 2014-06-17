@@ -69,7 +69,7 @@
 
 
 {{ Form::label('picture', 'Profielfoto'); }}
-    <img src="{{ '../../../images/'. $user->picture }}" >
+    <img src="{{ '../../../images/users/'. $user->picture }}" >
 
 @if($errors->first('picture'))
 <div class="form-group has-error">

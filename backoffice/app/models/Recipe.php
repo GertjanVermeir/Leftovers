@@ -21,12 +21,12 @@ class Recipe extends Eloquent
         return $this->belongsTo('User');
     }
 
-    public function ingredients(){
-        return $this->belongsToMany('Ingredient')->withPivot('amount');
-    }
-
     public function books(){
         return $this->belongsToMany('Book')->withPivot('notes','order');
+    }
+
+    public function ingredients(){
+        return $this->belongsToMany('Ingredient')->withPivot('amount');
     }
 
     public function comments(){
@@ -34,10 +34,10 @@ class Recipe extends Eloquent
     }
 
     public function likes(){
-        return $this->belongsToMany('User');
+        return $this->hasMany('Like');
     }
 
     public function ratings(){
-        return $this->belongsToMany('User')->withPivot('rating');
+        return $this->hasMany('Rating');
     }
 } 
